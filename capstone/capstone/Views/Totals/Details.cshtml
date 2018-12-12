@@ -1,0 +1,120 @@
+﻿@model capstone.Models.Total
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Total</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialMargin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialMargin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManHours)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManHours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnburdenedRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnburdenedRate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Burden)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Burden)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Insurance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Insurance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaborTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LaborTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Travel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Travel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Consumables)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Consumables)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstallQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstallQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompositeLabor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompositeLabor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstallQuoteTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstallQuoteTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesTax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesTax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Totals)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Totals)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TotalId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

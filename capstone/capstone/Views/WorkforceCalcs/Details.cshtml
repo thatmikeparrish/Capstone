@@ -1,0 +1,48 @@
+﻿@model capstone.Models.WorkforceCalc
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkforceCalc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeePayRateId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeePayRateId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagmentHours)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManagmentHours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagmentCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManagmentCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaborHours)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LaborHours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaborCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LaborCost)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.WorkforceCalcId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

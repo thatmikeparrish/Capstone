@@ -1,0 +1,131 @@
+﻿@model IEnumerable<capstone.Models.Total>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialMargin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnburdenedRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Insurance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LaborTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consumables)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstallQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompositeLabor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstallQuoteTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Totals)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialMargin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialQuote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubQuote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnburdenedRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Insurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LaborTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Travel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumables)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstallQuote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompositeLabor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstallQuoteTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Totals)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TotalId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TotalId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TotalId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<capstone.Models.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarginsId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkforceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeTrackerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarginsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkforceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeTrackerId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
