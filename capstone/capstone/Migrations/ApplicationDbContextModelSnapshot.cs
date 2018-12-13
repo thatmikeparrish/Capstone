@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using capstone.Data;
 
-namespace capstone.Data.Migrations
+namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181212220054_versiontwo")]
-    partial class versiontwo
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,8 +74,8 @@ namespace capstone.Data.Migrations
                     b.ToTable("Client");
 
                     b.HasData(
-                        new { ClientId = 1, City = "LaVergne", ClientTypeId = 1, Comments = "My first test project!", CompanyName = "Test Project 1", Email = "Random@gmail.com", FirstName = "Kayla", LastName = "Carter", PhoneNumber = "6156491437", State = "TN", StreetAddress = "307 Valley Forge Ct.", ZipCode = "37086" },
-                        new { ClientId = 2, City = "Murfreesboro", ClientTypeId = 2, Comments = "My second test project!", CompanyName = "Test Project 2", Email = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish", PhoneNumber = "6157886484", State = "TN", StreetAddress = "2324 Chandler Pl.", ZipCode = "37130" }
+                        new { ClientId = 1, City = "LaVergne", ClientTypeId = 1, Comments = "My first test project!", CompanyName = "Test Company 1", Email = "Random@gmail.com", FirstName = "Kayla", LastName = "Carter", PhoneNumber = "6156491437", State = "TN", StreetAddress = "307 Valley Forge Ct.", ZipCode = "37086" },
+                        new { ClientId = 2, City = "Murfreesboro", ClientTypeId = 2, Comments = "My second test project!", CompanyName = "Test Company 2", Email = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish", PhoneNumber = "6157886484", State = "TN", StreetAddress = "2324 Chandler Pl.", ZipCode = "37130" }
                     );
                 });
 
@@ -174,13 +172,11 @@ namespace capstone.Data.Migrations
 
                     b.Property<int?>("MaterialMargin");
 
-                    b.Property<int?>("MaterialQuote");
-
                     b.Property<int?>("SalesTax");
 
                     b.Property<int?>("SubCost");
 
-                    b.Property<int?>("SubQuote");
+                    b.Property<int?>("SubMargin");
 
                     b.Property<int?>("Totals");
 
@@ -265,8 +261,8 @@ namespace capstone.Data.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, MarginsId = 1, ProjectNumber = "17001", TimeTrackerId = 1, TotalId = 1, UserId = "402bf845-eb9f-4681-b16b-c682a1fd599e", WorkforceId = 1 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, MarginsId = 2, ProjectNumber = "17002", TimeTrackerId = 2, TotalId = 2, UserId = "402bf845-eb9f-4681-b16b-c682a1fd599e", WorkforceId = 2 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, MarginsId = 1, ProjectNumber = "17001", TimeTrackerId = 1, TotalId = 1, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add", WorkforceId = 1 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, MarginsId = 2, ProjectNumber = "17002", TimeTrackerId = 2, TotalId = 2, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add", WorkforceId = 2 }
                     );
                 });
 
@@ -315,8 +311,8 @@ namespace capstone.Data.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2, UserId = "402bf845-eb9f-4681-b16b-c682a1fd599e" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6, UserId = "402bf845-eb9f-4681-b16b-c682a1fd599e" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add" }
                     );
                 });
 
@@ -326,11 +322,13 @@ namespace capstone.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("Burden");
-
                     b.Property<int?>("CompositeLabor");
 
                     b.Property<int?>("Consumables");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<int?>("InstallQuote");
 
@@ -580,7 +578,7 @@ namespace capstone.Data.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "402bf845-eb9f-4681-b16b-c682a1fd599e", AccessFailedCount = 0, ConcurrencyStamp = "3ff0947c-b414-40a3-b3c5-1cdec526b191", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "MIKE PARRISH", PasswordHash = "AQAAAAEAACcQAAAAENAJpHSfbfpOy8xRjj0T+fOXd48wJ/hrVO6/rbSSJHxiOOj8B+SdFvc0KVYM1vX3UQ==", PhoneNumberConfirmed = false, SecurityStamp = "66c26b10-c183-4211-855c-09fac8145a22", TwoFactorEnabled = false, UserName = "Mike Parrish", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "f2af3029-1f3f-4b27-89ef-2016b41b9add", AccessFailedCount = 0, ConcurrencyStamp = "7e7d7aae-3ac6-47e5-87d9-372c9ffa660d", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEF9uWrJ3Un+S0GhfX/C9O9gZEyYi59B4l9teUMZhsvN9jkvM9Ft5vULPh1D78QYd3A==", PhoneNumberConfirmed = false, SecurityStamp = "aa74c832-732b-49b2-9c4f-434829fd000f", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 

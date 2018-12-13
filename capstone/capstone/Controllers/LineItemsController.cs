@@ -54,7 +54,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
+        public async Task<IActionResult> Create([Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubMargin,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
+        public async Task<IActionResult> Edit(int id, [Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubMargin,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
         {
             if (id != lineItem.LineItemId)
             {

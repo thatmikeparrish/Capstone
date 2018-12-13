@@ -11,10 +11,12 @@ namespace capstone.Models
         [Key]
         public int MarginId { get; set; }
 
+        [Display(Name = "Unburdened Rate")]
         public int? UnburdenedRate { get; set; }
 
         public int? Insurance { get; set; }
 
+        [Display(Name = "Labor Total")]
         public int? LaborTotal { get; set; }
 
         public int? Travel { get; set; }
@@ -23,6 +25,7 @@ namespace capstone.Models
 
         public int? Equipment { get; set; }
 
+        [Display(Name = "Composite Labor")]
         public int? CompositeLabor { get; set; }
     }
 }

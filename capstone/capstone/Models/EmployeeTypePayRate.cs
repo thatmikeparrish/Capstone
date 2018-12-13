@@ -12,12 +12,15 @@ namespace capstone.Models
         public int EmployeeTypePayRateId { get; set; }
 
         [Required]
+        [Display(Name = "Employee Type")]
         public int EmployeeTypeId { get; set; }
 
         public EmployeeType EmployeeType { get; set; }
 
+        [Display(Name = "Unburdened Pay Rate")]
         public double? UnburdenedPayRate { get; set; }
 
+        [Display(Name = "Employee Quantity")]
         public int? EmployeeQuantity { get; set; }
     }
 }

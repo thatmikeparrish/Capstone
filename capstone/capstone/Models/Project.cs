@@ -17,12 +17,14 @@ namespace capstone.Models
         public ApplicationUser User { get; set; }
 
         [Required]
+        [Display(Name = "Client Name")]
         public int ClientId { get; set; }
 
         public Client Client { get; set; }
 
         [Required]
         [StringLength(6)]
+        [Display(Name = "Project Number")]
         public string ProjectNumber { get; set; }
 
         public int? MarginsId { get; set; }
@@ -32,8 +34,10 @@ namespace capstone.Models
         public int? WorkforceId { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Completion Date")]
         public DateTime? CompletionDate { get; set; }
 
+        [Display(Name = "Complete?")]
         public bool? IsCompleted { get; set; }
 
         public int? TimeTrackerId { get; set; }

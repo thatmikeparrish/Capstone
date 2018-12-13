@@ -32,8 +32,8 @@ namespace capstone.Data
             {
                 FirstName = "Mike",
                 LastName = "Parrish",
-                UserName = "Mike Parrish",
-                NormalizedUserName = "MIKE PARRISH",
+                UserName = "thatmikeparrish@gmail.com",
+                NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM",
                 Email = "thatmikeparrish@gmail.com",
                 NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM",
                 EmailConfirmed = true,
@@ -90,7 +90,7 @@ namespace capstone.Data
                 {
                     ClientId = 1,
                     ClientTypeId = 1,
-                    CompanyName = "Test Project 1",
+                    CompanyName = "Test Company 1",
                     FirstName = "Kayla",
                     LastName = "Carter",
                     Email = "Random@gmail.com",
@@ -106,7 +106,7 @@ namespace capstone.Data
                 {
                     ClientId = 2,
                     ClientTypeId = 2,
-                    CompanyName = "Test Project 2",
+                    CompanyName = "Test Company 2",
                     FirstName = "Mike",
                     LastName = "Parrish",
                     Email = "thatmikeparrish@gmail.com",

@@ -7,17 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProjectsController(ApplicationDbContext context)
+        public ProjectsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Projects
         public async Task<IActionResult> Index()
@@ -49,8 +55,8 @@ namespace capstone.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "City");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+           ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName");
+           ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -61,13 +67,17 @@ namespace capstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProjectId,UserId,ClientId,ProjectNumber,MarginsId,LineItemId,TotalId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
         {
-            if (ModelState.IsValid)
+            var user = await GetCurrentUserAsync();
+
+            if (user != null)
             {
+                project.UserId = user.Id;
+                project.IsCompleted = false;
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "City", project.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", project.ClientId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", project.UserId);
             return View(project);
         }

@@ -2,27 +2,53 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace capstone.Data.Migrations
+namespace capstone.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "FirstName",
-                table: "AspNetUsers",
-                nullable: true);
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
-            migrationBuilder.AddColumn<string>(
-                name: "LastName",
-                table: "AspNetUsers",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Discriminator",
-                table: "AspNetUsers",
-                nullable: false,
-                defaultValue: "");
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "ClientType",
@@ -59,9 +85,8 @@ namespace capstone.Data.Migrations
                     Description = table.Column<string>(maxLength: 500, nullable: false),
                     MaterialCost = table.Column<int>(nullable: true),
                     MaterialMargin = table.Column<int>(nullable: true),
-                    MaterialQuote = table.Column<int>(nullable: true),
                     SubCost = table.Column<int>(nullable: true),
-                    SubQuote = table.Column<int>(nullable: true),
+                    SubMargin = table.Column<int>(nullable: true),
                     ManHours = table.Column<int>(nullable: true),
                     UnburdenedRate = table.Column<int>(nullable: true),
                     Insurance = table.Column<int>(nullable: true),
@@ -99,6 +124,155 @@ namespace capstone.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectLineItem",
+                columns: table => new
+                {
+                    ProjectLineItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProjectId = table.Column<int>(nullable: false),
+                    LineItemId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectLineItem", x => x.ProjectLineItemId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Total",
+                columns: table => new
+                {
+                    TotalId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(maxLength: 500, nullable: false),
+                    MaterialCost = table.Column<int>(nullable: true),
+                    MaterialMargin = table.Column<int>(nullable: true),
+                    MaterialQuote = table.Column<int>(nullable: true),
+                    SubCost = table.Column<int>(nullable: true),
+                    SubQuote = table.Column<int>(nullable: true),
+                    ManHours = table.Column<int>(nullable: true),
+                    UnburdenedRate = table.Column<int>(nullable: true),
+                    Insurance = table.Column<int>(nullable: true),
+                    LaborTotal = table.Column<int>(nullable: true),
+                    Travel = table.Column<int>(nullable: true),
+                    Consumables = table.Column<int>(nullable: true),
+                    InstallQuote = table.Column<int>(nullable: true),
+                    CompositeLabor = table.Column<int>(nullable: true),
+                    InstallQuoteTotal = table.Column<int>(nullable: true),
+                    SalesTax = table.Column<int>(nullable: true),
+                    Totals = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Total", x => x.TotalId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TimeTracker",
                 columns: table => new
                 {
@@ -118,35 +292,6 @@ namespace capstone.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Total",
-                columns: table => new
-                {
-                    TotalId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MaterialCost = table.Column<int>(nullable: true),
-                    MaterialMargin = table.Column<int>(nullable: true),
-                    MaterialQuote = table.Column<int>(nullable: true),
-                    SubCost = table.Column<int>(nullable: true),
-                    SubQuote = table.Column<int>(nullable: true),
-                    ManHours = table.Column<int>(nullable: true),
-                    UnburdenedRate = table.Column<int>(nullable: true),
-                    Burden = table.Column<int>(nullable: true),
-                    Insurance = table.Column<int>(nullable: true),
-                    LaborTotal = table.Column<int>(nullable: true),
-                    Travel = table.Column<int>(nullable: true),
-                    Consumables = table.Column<int>(nullable: true),
-                    InstallQuote = table.Column<int>(nullable: true),
-                    CompositeLabor = table.Column<int>(nullable: true),
-                    InstallQuoteTotal = table.Column<int>(nullable: true),
-                    SalesTax = table.Column<int>(nullable: true),
-                    Totals = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Total", x => x.TotalId);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,7 +354,6 @@ namespace capstone.Data.Migrations
                     ClientId = table.Column<int>(nullable: false),
                     ProjectNumber = table.Column<string>(maxLength: 6, nullable: false),
                     MarginsId = table.Column<int>(nullable: true),
-                    LineItemId = table.Column<int>(nullable: true),
                     TotalId = table.Column<int>(nullable: true),
                     WorkforceId = table.Column<int>(nullable: true),
                     CompletionDate = table.Column<DateTime>(nullable: true),
@@ -260,7 +404,7 @@ namespace capstone.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName" },
-                values: new object[] { "3526ea9f-d31a-4b0e-a739-c59f41c4db79", 0, "d596ed17-9fdb-405e-89fc-d5dc19680de5", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "MIKE PARRISH", "AQAAAAEAACcQAAAAEA63qHvVnlejtwy3+zqEqS85tKFxDkuhrhJDwVEXcufFlokORDerlcZt6/Z2maweuw==", null, false, "4769bab9-7b57-47d6-b28c-cfd0c5d23c73", false, "Mike Parrish", "Mike", "Parrish" });
+                values: new object[] { "f2af3029-1f3f-4b27-89ef-2016b41b9add", 0, "7e7d7aae-3ac6-47e5-87d9-372c9ffa660d", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAEF9uWrJ3Un+S0GhfX/C9O9gZEyYi59B4l9teUMZhsvN9jkvM9Ft5vULPh1D78QYd3A==", null, false, "aa74c832-732b-49b2-9c4f-434829fd000f", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
 
             migrationBuilder.InsertData(
                 table: "ClientType",
@@ -283,11 +427,12 @@ namespace capstone.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "LineItem",
-                columns: new[] { "LineItemId", "CompositeLabor", "Consumables", "Description", "InstallQuote", "InstallQuoteTotal", "Insurance", "LaborTotal", "ManHours", "MaterialCost", "MaterialMargin", "MaterialQuote", "SalesTax", "SubCost", "SubQuote", "Totals", "Travel", "UnburdenedRate" },
+                columns: new[] { "LineItemId", "CompositeLabor", "Consumables", "Description", "InstallQuote", "InstallQuoteTotal", "Insurance", "LaborTotal", "ManHours", "MaterialCost", "MaterialMargin", "SalesTax", "SubCost", "SubMargin", "Totals", "Travel", "UnburdenedRate" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Build out a home page", null, null, null, null, 2, 0, null, null, null, 0, null, null, null, null },
-                    { 2, null, null, "Build out a bio page", null, null, null, null, 4, 0, null, null, null, 0, null, null, null, null }
+                    { 1, null, null, "Build out a home page", null, null, null, null, 2, 0, null, null, 0, null, null, null, null },
+                    { 2, null, null, "Build out a bio page", null, null, null, null, 4, 0, null, null, 0, null, null, null, null },
+                    { 3, null, null, "Build out a Contact page", null, null, null, null, 6, 0, null, null, 0, null, null, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -297,6 +442,16 @@ namespace capstone.Data.Migrations
                 {
                     { 1, 0, 0, 0, 0, 0, 0, 0 },
                     { 2, 10, 10, 10, 10, 10, 10, 10 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProjectLineItem",
+                columns: new[] { "ProjectLineItemId", "LineItemId", "ProjectId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 2 },
+                    { 3, 3, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -313,8 +468,8 @@ namespace capstone.Data.Migrations
                 columns: new[] { "ClientId", "City", "ClientTypeId", "Comments", "CompanyName", "Email", "FirstName", "LastName", "PhoneNumber", "State", "StreetAddress", "ZipCode" },
                 values: new object[,]
                 {
-                    { 1, "LaVergne", 1, "My first test project!", "Test Project 1", "Random@gmail.com", "Kayla", "Carter", "6156491437", "TN", "307 Valley Forge Ct.", "37086" },
-                    { 2, "Murfreesboro", 2, "My second test project!", "Test Project 2", "thatmikeparrish@gmail.com", "Mike", "Parrish", "6157886484", "TN", "2324 Chandler Pl.", "37130" }
+                    { 1, "LaVergne", 1, "My first test project!", "Test Company 1", "Random@gmail.com", "Kayla", "Carter", "6156491437", "TN", "307 Valley Forge Ct.", "37086" },
+                    { 2, "Murfreesboro", 2, "My second test project!", "Test Company 2", "thatmikeparrish@gmail.com", "Mike", "Parrish", "6157886484", "TN", "2324 Chandler Pl.", "37130" }
                 });
 
             migrationBuilder.InsertData(
@@ -331,19 +486,58 @@ namespace capstone.Data.Migrations
                 columns: new[] { "TimeTrackerId", "Comments", "Date", "Hours", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "3526ea9f-d31a-4b0e-a739-c59f41c4db79" },
-                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "3526ea9f-d31a-4b0e-a739-c59f41c4db79" }
+                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "f2af3029-1f3f-4b27-89ef-2016b41b9add" },
+                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "f2af3029-1f3f-4b27-89ef-2016b41b9add" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "LineItemId", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
-                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 1, 1, "17001", 1, 1, "3526ea9f-d31a-4b0e-a739-c59f41c4db79", 1 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
+                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 1, "17001", 1, 1, "f2af3029-1f3f-4b27-89ef-2016b41b9add", 1 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "LineItemId", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
-                values: new object[] { 2, 2, null, false, 2, 2, "17002", 2, 2, "3526ea9f-d31a-4b0e-a739-c59f41c4db79", 2 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
+                values: new object[] { 2, 2, null, false, 2, "17002", 2, 2, "f2af3029-1f3f-4b27-89ef-2016b41b9add", 2 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Client_ClientTypeId",
@@ -379,6 +573,21 @@ namespace capstone.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
                 name: "LineItem");
 
             migrationBuilder.DropTable(
@@ -386,6 +595,9 @@ namespace capstone.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Project");
+
+            migrationBuilder.DropTable(
+                name: "ProjectLineItem");
 
             migrationBuilder.DropTable(
                 name: "TimeTracker");
@@ -397,7 +609,13 @@ namespace capstone.Data.Migrations
                 name: "WorkforceCalc");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
                 name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "EmployeeTypePayRate");
@@ -407,23 +625,6 @@ namespace capstone.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "EmployeeType");
-
-            migrationBuilder.DeleteData(
-                table: "AspNetUsers",
-                keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "3526ea9f-d31a-4b0e-a739-c59f41c4db79", "d596ed17-9fdb-405e-89fc-d5dc19680de5" });
-
-            migrationBuilder.DropColumn(
-                name: "FirstName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "LastName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "Discriminator",
-                table: "AspNetUsers");
         }
     }
 }
