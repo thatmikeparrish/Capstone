@@ -20,9 +20,28 @@ namespace capstone.Controllers
         }
 
         // GET: LineItems
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.LineItem.ToListAsync());
+            var allLineItems = _context.LineItem.Include("Project").Include("WorkforceCalc").Include("EmployeeTypePayRate").ToList().Select(li => new LineItem
+            {
+                ProjectId = li.ProjectId,
+                Project = li.Project,
+                Description = li.Description,
+                MaterialCost = li.MaterialCost,
+                SubCost = li.SubCost,
+                ManHours = li.ManHours,
+                UnburdenedRate = li.UnburdenedRate,
+                Insurance = li.Insurance,
+                LaborTotal = li.LaborTotal,
+                Travel = li.Travel,
+                Consumables = li.Consumables,
+                InstallQuote = li.InstallQuote,
+                CompositeLabor = li.CompositeLabor,
+                InstallQuoteTotal = li.InstallQuoteTotal,
+                QuoteSalesTax = li.MaterialQuote * li.Project.SalesTax
+            });
+
+            return View(allLineItems);
         }
 
         // GET: LineItems/Details/5

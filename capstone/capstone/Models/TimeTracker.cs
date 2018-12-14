@@ -20,7 +20,7 @@ namespace capstone.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public int Hours { get; set; }
+        public double Hours { get; set; }
 
         [Required]
         [StringLength(500)]

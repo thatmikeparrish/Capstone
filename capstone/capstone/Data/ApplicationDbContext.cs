@@ -17,7 +17,6 @@ namespace capstone.Data
         public DbSet<EmployeeType> EmployeeType { get; set; }
         public DbSet<EmployeeTypePayRate> EmployeeTypePayRate { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
-        public DbSet<ProjectLineItem> ProjectLineItem { get; set; }
         public DbSet<Margin> Margin { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
@@ -44,33 +43,37 @@ namespace capstone.Data
             user.PasswordHash = passwordHash.HashPassword(user, "E@gle6!5");
             modelBuilder.Entity<ApplicationUser>().HasData(user);
 
-            modelBuilder.Entity<Project>().HasData(
-                new Project()
-                {
-                    ProjectId = 1,
-                    UserId = user.Id,
-                    ClientId = 1,
-                    ProjectNumber = "17001",
-                    MarginsId = 1,
-                    TotalId = 1,
-                    WorkforceId = 1,
-                    CompletionDate = DateTime.Parse("2017-11-15"),
-                    IsCompleted = true,
-                    TimeTrackerId = 1
-                },
-                new Project()
-                {
-                    ProjectId = 2,
-                    UserId = user.Id,
-                    ClientId = 2,
-                    ProjectNumber = "17002",
-                    MarginsId = 2,
-                    TotalId = 2,
-                    WorkforceId = 2,
-                    IsCompleted = false,
-                    TimeTrackerId = 2
-                }
-            );
+            Project ProjectOne = new Project
+            {
+                ProjectId = 1,
+                UserId = user.Id,
+                ClientId = 1,
+                ProjectNumber = "17001",
+                SalesTax = .0975,
+                MarginsId = 1,
+                TotalId = 1,
+                WorkforceId = 1,
+                CompletionDate = DateTime.Parse("2017-11-15"),
+                IsCompleted = true,
+                TimeTrackerId = 1
+            };
+
+            Project ProjectTwo = new Project
+            {
+                ProjectId = 2,
+                UserId = user.Id,
+                ClientId = 2,
+                ProjectNumber = "17002",
+                SalesTax = .0975,
+                MarginsId = 2,
+                TotalId = 2,
+                WorkforceId = 2,
+                IsCompleted = true,
+                TimeTrackerId = 2
+            };
+
+            modelBuilder.Entity<Project>().HasData(ProjectOne, ProjectTwo);
+
 
             modelBuilder.Entity<ClientType>().HasData(
                 new ClientType()
@@ -149,53 +152,73 @@ namespace capstone.Data
                 new LineItem()
                 {
                     LineItemId = 1,
-                    Description = "Build out a home page",
-                    MaterialCost = 0,
-                    SubCost = 0,
+                    ProjectId = 1,
+                    Description = "Build out a 50000 page",
+                    MaterialCost = 50000,
+                    SubCost = 50000,
                     ManHours = 2
                 },
 
                 new LineItem()
                 {
                     LineItemId = 2,
-                    Description = "Build out a bio page",
-                    MaterialCost = 0,
-                    SubCost = 0,
+                    ProjectId = 2,
+                    Description = "Build out a 20000 page",
+                    MaterialCost = 20000,
+                    SubCost = 20000,
                     ManHours = 4
                 },
 
                 new LineItem()
                 {
                     LineItemId = 3,
-                    Description = "Build out a Contact page",
+                    ProjectId = 1,
+                    Description = "Build out a 5000 page",
+                    MaterialCost = 5000,
+                    SubCost = 5000,
+                    ManHours = 6
+                },
+
+                new LineItem()
+                {
+                    LineItemId = 4,
+                    ProjectId = 2,
+                    Description = "Build out a 1000 page",
+                    MaterialCost = 1000,
+                    SubCost = 1000,
+                    ManHours = 6
+                },
+
+                new LineItem()
+                {
+                    LineItemId = 5,
+                    ProjectId = 1,
+                    Description = "Build out a 500 page",
+                    MaterialCost = 500,
+                    SubCost = 500,
+                    ManHours = 6
+                },
+
+                new LineItem()
+                {
+                    LineItemId = 6,
+                    ProjectId = 2,
+                    Description = "Build out a 100 page",
+                    MaterialCost = 100,
+                    SubCost = 100,
+                    ManHours = 6
+                },
+
+                new LineItem()
+                {
+                    LineItemId = 7,
+                    ProjectId = 1,
+                    Description = "Build out a free page",
                     MaterialCost = 0,
                     SubCost = 0,
                     ManHours = 6
                 }
             );
-
-            modelBuilder.Entity<ProjectLineItem>().HasData(
-               new ProjectLineItem()
-               {
-                   ProjectLineItemId = 1,
-                   ProjectId = 1,
-                   LineItemId = 1
-               },
-
-               new ProjectLineItem()
-               {
-                   ProjectLineItemId = 2,
-                   ProjectId = 2,
-                   LineItemId = 2
-               },
-
-               new ProjectLineItem()
-               {
-                   ProjectLineItemId = 3,
-                   ProjectId = 2,
-                   LineItemId = 3
-               }
-           );
 
             modelBuilder.Entity<EmployeeType>().HasData(
                 new EmployeeType()

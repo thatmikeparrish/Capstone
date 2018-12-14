@@ -12,20 +12,20 @@ namespace capstone.Models
         public int MarginId { get; set; }
 
         [Display(Name = "Unburdened Rate")]
-        public int? UnburdenedRate { get; set; }
+        public double? UnburdenedRate { get; set; }
 
-        public int? Insurance { get; set; }
+        public double? Insurance { get; set; }
 
         [Display(Name = "Labor Total")]
-        public int? LaborTotal { get; set; }
+        public double? LaborTotal { get; set; }
 
-        public int? Travel { get; set; }
+        public double? Travel { get; set; }
 
-        public int? Consumables { get; set; }
+        public double? Consumables { get; set; }
 
-        public int? Equipment { get; set; }
+        public double? Equipment { get; set; }
 
         [Display(Name = "Composite Labor")]
-        public int? CompositeLabor { get; set; }
+        public double? CompositeLabor { get; set; }
     }
 }

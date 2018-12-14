@@ -16,15 +16,15 @@ namespace capstone.Models
         public EmployeeTypePayRate EmployeeTypePayRate { get; set; }
 
         [Display(Name = "Managment Hours")]
-        public int? ManagmentHours { get; set; }
+        public double? ManagmentHours { get; set; }
 
         [Display(Name = "Managment Cost")]
-        public int? ManagmentCost { get; set; }
+        public double? ManagmentCost { get; set; }
 
         [Display(Name = "Labor Hours")]
-        public int? LaborHours { get; set; }
+        public double? LaborHours { get; set; }
 
         [Display(Name = "Labor Cost")]
-        public int? LaborCost { get; set; }
+        public double? LaborCost { get; set; }
     }
 }

@@ -61,7 +61,7 @@
                 @Html.DisplayNameFor(model => model.InstallQuoteTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SalesTax)
+                @Html.DisplayNameFor(model => model.QuoteSalesTax)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Totals)
@@ -76,55 +76,56 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaterialCost)
+                @String.Format("{0:c}", item.MaterialCost)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaterialMargin)
+                @String.Format("{0:P0}", item.MaterialMargin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaterialQuote)
+                @String.Format("{0:c}", item.MaterialQuote)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubCost)
+                @String.Format("{0:c}", item.SubCost)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubMargin)
+                @String.Format("{0:P0}", item.SubMargin)
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubQuote)
+                @String.Format("{0:c}", item.SubQuote)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ManHours)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UnburdenedRate)
+                @String.Format("{0:c}", item.UnburdenedRate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Insurance)
+                @String.Format("{0:c}", item.Insurance)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LaborTotal)
+                @String.Format("{0:c}", item.LaborTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Travel)
+                @String.Format("{0:c}", item.Travel)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Consumables)
+                @String.Format("{0:c}", item.Consumables)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InstallQuote)
+                @String.Format("{0:c}", item.InstallQuote)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CompositeLabor)
+                @String.Format("{0:c}", item.CompositeLabor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InstallQuoteTotal)
+                @String.Format("{0:c}", item.InstallQuoteTotal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SalesTax)
+                @String.Format("{0:c}", item.QuoteSalesTax)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Totals)
+                @String.Format("{0:c}", item.Totals)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.LineItemId">Edit</a> |

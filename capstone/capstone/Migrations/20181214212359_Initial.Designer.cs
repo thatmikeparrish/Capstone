@@ -10,7 +10,7 @@ using capstone.Data;
 namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181213215302_Initial")]
+    [Migration("20181214212359_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,48 +152,48 @@ namespace capstone.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CompositeLabor");
+                    b.Property<double?>("CompositeLabor");
 
-                    b.Property<int?>("Consumables");
+                    b.Property<double?>("Consumables");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500);
 
-                    b.Property<int?>("InstallQuote");
+                    b.Property<double?>("InstallQuote");
 
-                    b.Property<int?>("InstallQuoteTotal");
+                    b.Property<double?>("InstallQuoteTotal");
 
-                    b.Property<int?>("Insurance");
+                    b.Property<double?>("Insurance");
 
-                    b.Property<int?>("LaborTotal");
+                    b.Property<double?>("LaborTotal");
 
-                    b.Property<int?>("ManHours");
+                    b.Property<double?>("ManHours");
 
-                    b.Property<int?>("MaterialCost");
+                    b.Property<double?>("MaterialCost");
 
-                    b.Property<int?>("MaterialMargin");
+                    b.Property<int>("ProjectId");
 
-                    b.Property<int?>("SalesTax");
+                    b.Property<double?>("SubCost");
 
-                    b.Property<int?>("SubCost");
+                    b.Property<double?>("Travel");
 
-                    b.Property<int?>("SubMargin");
-
-                    b.Property<int?>("Totals");
-
-                    b.Property<int?>("Travel");
-
-                    b.Property<int?>("UnburdenedRate");
+                    b.Property<double?>("UnburdenedRate");
 
                     b.HasKey("LineItemId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("LineItem");
 
                     b.HasData(
-                        new { LineItemId = 1, Description = "Build out a home page", ManHours = 2, MaterialCost = 0, SubCost = 0 },
-                        new { LineItemId = 2, Description = "Build out a bio page", ManHours = 4, MaterialCost = 0, SubCost = 0 },
-                        new { LineItemId = 3, Description = "Build out a Contact page", ManHours = 6, MaterialCost = 0, SubCost = 0 }
+                        new { LineItemId = 1, Description = "Build out a 50000 page", ManHours = 2.0, MaterialCost = 50000.0, ProjectId = 1, SubCost = 50000.0 },
+                        new { LineItemId = 2, Description = "Build out a 20000 page", ManHours = 4.0, MaterialCost = 20000.0, ProjectId = 2, SubCost = 20000.0 },
+                        new { LineItemId = 3, Description = "Build out a 5000 page", ManHours = 6.0, MaterialCost = 5000.0, ProjectId = 1, SubCost = 5000.0 },
+                        new { LineItemId = 4, Description = "Build out a 1000 page", ManHours = 6.0, MaterialCost = 1000.0, ProjectId = 2, SubCost = 1000.0 },
+                        new { LineItemId = 5, Description = "Build out a 500 page", ManHours = 6.0, MaterialCost = 500.0, ProjectId = 1, SubCost = 500.0 },
+                        new { LineItemId = 6, Description = "Build out a 100 page", ManHours = 6.0, MaterialCost = 100.0, ProjectId = 2, SubCost = 100.0 },
+                        new { LineItemId = 7, Description = "Build out a free page", ManHours = 6.0, MaterialCost = 0.0, ProjectId = 1, SubCost = 0.0 }
                     );
                 });
 
@@ -203,27 +203,27 @@ namespace capstone.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CompositeLabor");
+                    b.Property<double?>("CompositeLabor");
 
-                    b.Property<int?>("Consumables");
+                    b.Property<double?>("Consumables");
 
-                    b.Property<int?>("Equipment");
+                    b.Property<double?>("Equipment");
 
-                    b.Property<int?>("Insurance");
+                    b.Property<double?>("Insurance");
 
-                    b.Property<int?>("LaborTotal");
+                    b.Property<double?>("LaborTotal");
 
-                    b.Property<int?>("Travel");
+                    b.Property<double?>("Travel");
 
-                    b.Property<int?>("UnburdenedRate");
+                    b.Property<double?>("UnburdenedRate");
 
                     b.HasKey("MarginId");
 
                     b.ToTable("Margin");
 
                     b.HasData(
-                        new { MarginId = 1, CompositeLabor = 0, Consumables = 0, Equipment = 0, Insurance = 0, LaborTotal = 0, Travel = 0, UnburdenedRate = 0 },
-                        new { MarginId = 2, CompositeLabor = 10, Consumables = 10, Equipment = 10, Insurance = 10, LaborTotal = 10, Travel = 10, UnburdenedRate = 10 }
+                        new { MarginId = 1, CompositeLabor = 0.0, Consumables = 0.0, Equipment = 0.0, Insurance = 0.0, LaborTotal = 0.0, Travel = 0.0, UnburdenedRate = 0.0 },
+                        new { MarginId = 2, CompositeLabor = 10.0, Consumables = 10.0, Equipment = 10.0, Insurance = 10.0, LaborTotal = 10.0, Travel = 10.0, UnburdenedRate = 10.0 }
                     );
                 });
 
@@ -245,6 +245,8 @@ namespace capstone.Migrations
                         .IsRequired()
                         .HasMaxLength(6);
 
+                    b.Property<double?>("SalesTax");
+
                     b.Property<int?>("TimeTrackerId");
 
                     b.Property<int?>("TotalId");
@@ -263,29 +265,8 @@ namespace capstone.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, MarginsId = 1, ProjectNumber = "17001", TimeTrackerId = 1, TotalId = 1, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add", WorkforceId = 1 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, MarginsId = 2, ProjectNumber = "17002", TimeTrackerId = 2, TotalId = 2, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add", WorkforceId = 2 }
-                    );
-                });
-
-            modelBuilder.Entity("capstone.Models.ProjectLineItem", b =>
-                {
-                    b.Property<int>("ProjectLineItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("LineItemId");
-
-                    b.Property<int>("ProjectId");
-
-                    b.HasKey("ProjectLineItemId");
-
-                    b.ToTable("ProjectLineItem");
-
-                    b.HasData(
-                        new { ProjectLineItemId = 1, LineItemId = 1, ProjectId = 1 },
-                        new { ProjectLineItemId = 2, LineItemId = 2, ProjectId = 2 },
-                        new { ProjectLineItemId = 3, LineItemId = 3, ProjectId = 2 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, MarginsId = 1, ProjectNumber = "17001", SalesTax = 0.0975, TimeTrackerId = 1, TotalId = 1, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c", WorkforceId = 1 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = true, MarginsId = 2, ProjectNumber = "17002", SalesTax = 0.0975, TimeTrackerId = 2, TotalId = 2, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c", WorkforceId = 2 }
                     );
                 });
 
@@ -301,7 +282,7 @@ namespace capstone.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int>("Hours");
+                    b.Property<double>("Hours");
 
                     b.Property<string>("UserId")
                         .IsRequired();
@@ -313,8 +294,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6, UserId = "f2af3029-1f3f-4b27-89ef-2016b41b9add" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c" }
                     );
                 });
 
@@ -375,13 +356,13 @@ namespace capstone.Migrations
 
                     b.Property<int?>("EmployeeTypePayRateId");
 
-                    b.Property<int?>("LaborCost");
+                    b.Property<double?>("LaborCost");
 
-                    b.Property<int?>("LaborHours");
+                    b.Property<double?>("LaborHours");
 
-                    b.Property<int?>("ManagmentCost");
+                    b.Property<double?>("ManagmentCost");
 
-                    b.Property<int?>("ManagmentHours");
+                    b.Property<double?>("ManagmentHours");
 
                     b.HasKey("WorkforceCalcId");
 
@@ -580,7 +561,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "f2af3029-1f3f-4b27-89ef-2016b41b9add", AccessFailedCount = 0, ConcurrencyStamp = "7e7d7aae-3ac6-47e5-87d9-372c9ffa660d", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEF9uWrJ3Un+S0GhfX/C9O9gZEyYi59B4l9teUMZhsvN9jkvM9Ft5vULPh1D78QYd3A==", PhoneNumberConfirmed = false, SecurityStamp = "aa74c832-732b-49b2-9c4f-434829fd000f", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "69d775d9-40c3-431e-842a-477b5207ef7c", AccessFailedCount = 0, ConcurrencyStamp = "57d72688-ce1a-487a-9dd5-a6b50839e1f6", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEMLZKWQxy5Z8Sq3L7sFCWBjQpwZZbgpUrYgVtsU/ESeT2OFZUROODCAcz3YmUvkTkA==", PhoneNumberConfirmed = false, SecurityStamp = "644c9122-a497-4635-b043-25cf2746264f", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 
@@ -597,6 +578,14 @@ namespace capstone.Migrations
                     b.HasOne("capstone.Models.EmployeeType", "EmployeeType")
                         .WithMany()
                         .HasForeignKey("EmployeeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("capstone.Models.LineItem", b =>
+                {
+                    b.HasOne("capstone.Models.Project", "Project")
+                        .WithMany("LineItems")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

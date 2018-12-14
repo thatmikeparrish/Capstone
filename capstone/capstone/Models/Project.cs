@@ -27,11 +27,15 @@ namespace capstone.Models
         [Display(Name = "Project Number")]
         public string ProjectNumber { get; set; }
 
+        public double? SalesTax { get; set; }
+
         public int? MarginsId { get; set; }
 
         public int? TotalId { get; set; }
 
         public int? WorkforceId { get; set; }
+
+        public WorkforceCalc WorkforceCalc { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Completion Date")]
@@ -41,5 +45,7 @@ namespace capstone.Models
         public bool? IsCompleted { get; set; }
 
         public int? TimeTrackerId { get; set; }
+
+        public virtual ICollection<LineItem> LineItems { get; set;}
     }
 }

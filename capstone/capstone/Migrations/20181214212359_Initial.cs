@@ -77,64 +77,22 @@ namespace capstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LineItem",
-                columns: table => new
-                {
-                    LineItemId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(maxLength: 500, nullable: false),
-                    MaterialCost = table.Column<int>(nullable: true),
-                    MaterialMargin = table.Column<int>(nullable: true),
-                    SubCost = table.Column<int>(nullable: true),
-                    SubMargin = table.Column<int>(nullable: true),
-                    ManHours = table.Column<int>(nullable: true),
-                    UnburdenedRate = table.Column<int>(nullable: true),
-                    Insurance = table.Column<int>(nullable: true),
-                    LaborTotal = table.Column<int>(nullable: true),
-                    Travel = table.Column<int>(nullable: true),
-                    Consumables = table.Column<int>(nullable: true),
-                    InstallQuote = table.Column<int>(nullable: true),
-                    CompositeLabor = table.Column<int>(nullable: true),
-                    InstallQuoteTotal = table.Column<int>(nullable: true),
-                    SalesTax = table.Column<int>(nullable: true),
-                    Totals = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LineItem", x => x.LineItemId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Margin",
                 columns: table => new
                 {
                     MarginId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UnburdenedRate = table.Column<int>(nullable: true),
-                    Insurance = table.Column<int>(nullable: true),
-                    LaborTotal = table.Column<int>(nullable: true),
-                    Travel = table.Column<int>(nullable: true),
-                    Consumables = table.Column<int>(nullable: true),
-                    Equipment = table.Column<int>(nullable: true),
-                    CompositeLabor = table.Column<int>(nullable: true)
+                    UnburdenedRate = table.Column<double>(nullable: true),
+                    Insurance = table.Column<double>(nullable: true),
+                    LaborTotal = table.Column<double>(nullable: true),
+                    Travel = table.Column<double>(nullable: true),
+                    Consumables = table.Column<double>(nullable: true),
+                    Equipment = table.Column<double>(nullable: true),
+                    CompositeLabor = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Margin", x => x.MarginId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProjectLineItem",
-                columns: table => new
-                {
-                    ProjectLineItemId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProjectId = table.Column<int>(nullable: false),
-                    LineItemId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectLineItem", x => x.ProjectLineItemId);
                 });
 
             migrationBuilder.CreateTable(
@@ -280,7 +238,7 @@ namespace capstone.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Hours = table.Column<int>(nullable: false),
+                    Hours = table.Column<double>(nullable: false),
                     Comments = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
@@ -353,6 +311,7 @@ namespace capstone.Migrations
                     UserId = table.Column<string>(nullable: false),
                     ClientId = table.Column<int>(nullable: false),
                     ProjectNumber = table.Column<string>(maxLength: 6, nullable: false),
+                    SalesTax = table.Column<double>(nullable: true),
                     MarginsId = table.Column<int>(nullable: true),
                     TotalId = table.Column<int>(nullable: true),
                     WorkforceId = table.Column<int>(nullable: true),
@@ -385,10 +344,10 @@ namespace capstone.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     EmployeePayRateId = table.Column<int>(nullable: true),
                     EmployeeTypePayRateId = table.Column<int>(nullable: true),
-                    ManagmentHours = table.Column<int>(nullable: true),
-                    ManagmentCost = table.Column<int>(nullable: true),
-                    LaborHours = table.Column<int>(nullable: true),
-                    LaborCost = table.Column<int>(nullable: true)
+                    ManagmentHours = table.Column<double>(nullable: true),
+                    ManagmentCost = table.Column<double>(nullable: true),
+                    LaborHours = table.Column<double>(nullable: true),
+                    LaborCost = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -401,10 +360,41 @@ namespace capstone.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "LineItem",
+                columns: table => new
+                {
+                    LineItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProjectId = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(maxLength: 500, nullable: false),
+                    MaterialCost = table.Column<double>(nullable: true),
+                    SubCost = table.Column<double>(nullable: true),
+                    ManHours = table.Column<double>(nullable: true),
+                    UnburdenedRate = table.Column<double>(nullable: true),
+                    Insurance = table.Column<double>(nullable: true),
+                    LaborTotal = table.Column<double>(nullable: true),
+                    Travel = table.Column<double>(nullable: true),
+                    Consumables = table.Column<double>(nullable: true),
+                    InstallQuote = table.Column<double>(nullable: true),
+                    CompositeLabor = table.Column<double>(nullable: true),
+                    InstallQuoteTotal = table.Column<double>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LineItem", x => x.LineItemId);
+                    table.ForeignKey(
+                        name: "FK_LineItem_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "ProjectId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName" },
-                values: new object[] { "f2af3029-1f3f-4b27-89ef-2016b41b9add", 0, "7e7d7aae-3ac6-47e5-87d9-372c9ffa660d", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAEF9uWrJ3Un+S0GhfX/C9O9gZEyYi59B4l9teUMZhsvN9jkvM9Ft5vULPh1D78QYd3A==", null, false, "aa74c832-732b-49b2-9c4f-434829fd000f", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
+                values: new object[] { "69d775d9-40c3-431e-842a-477b5207ef7c", 0, "57d72688-ce1a-487a-9dd5-a6b50839e1f6", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAEMLZKWQxy5Z8Sq3L7sFCWBjQpwZZbgpUrYgVtsU/ESeT2OFZUROODCAcz3YmUvkTkA==", null, false, "644c9122-a497-4635-b043-25cf2746264f", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
 
             migrationBuilder.InsertData(
                 table: "ClientType",
@@ -426,32 +416,12 @@ namespace capstone.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "LineItem",
-                columns: new[] { "LineItemId", "CompositeLabor", "Consumables", "Description", "InstallQuote", "InstallQuoteTotal", "Insurance", "LaborTotal", "ManHours", "MaterialCost", "MaterialMargin", "SalesTax", "SubCost", "SubMargin", "Totals", "Travel", "UnburdenedRate" },
-                values: new object[,]
-                {
-                    { 1, null, null, "Build out a home page", null, null, null, null, 2, 0, null, null, 0, null, null, null, null },
-                    { 2, null, null, "Build out a bio page", null, null, null, null, 4, 0, null, null, 0, null, null, null, null },
-                    { 3, null, null, "Build out a Contact page", null, null, null, null, 6, 0, null, null, 0, null, null, null, null }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Margin",
                 columns: new[] { "MarginId", "CompositeLabor", "Consumables", "Equipment", "Insurance", "LaborTotal", "Travel", "UnburdenedRate" },
                 values: new object[,]
                 {
-                    { 1, 0, 0, 0, 0, 0, 0, 0 },
-                    { 2, 10, 10, 10, 10, 10, 10, 10 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ProjectLineItem",
-                columns: new[] { "ProjectLineItemId", "LineItemId", "ProjectId" },
-                values: new object[,]
-                {
-                    { 1, 1, 1 },
-                    { 2, 2, 2 },
-                    { 3, 3, 2 }
+                    { 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
+                    { 2, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -486,19 +456,33 @@ namespace capstone.Migrations
                 columns: new[] { "TimeTrackerId", "Comments", "Date", "Hours", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "f2af3029-1f3f-4b27-89ef-2016b41b9add" },
-                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "f2af3029-1f3f-4b27-89ef-2016b41b9add" }
+                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, "69d775d9-40c3-431e-842a-477b5207ef7c" },
+                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6.0, "69d775d9-40c3-431e-842a-477b5207ef7c" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
-                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 1, "17001", 1, 1, "f2af3029-1f3f-4b27-89ef-2016b41b9add", 1 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "SalesTax", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
+                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 1, "17001", 0.0975, 1, 1, "69d775d9-40c3-431e-842a-477b5207ef7c", 1 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
-                values: new object[] { 2, 2, null, false, 2, "17002", 2, 2, "f2af3029-1f3f-4b27-89ef-2016b41b9add", 2 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "MarginsId", "ProjectNumber", "SalesTax", "TimeTrackerId", "TotalId", "UserId", "WorkforceId" },
+                values: new object[] { 2, 2, null, true, 2, "17002", 0.0975, 2, 2, "69d775d9-40c3-431e-842a-477b5207ef7c", 2 });
+
+            migrationBuilder.InsertData(
+                table: "LineItem",
+                columns: new[] { "LineItemId", "CompositeLabor", "Consumables", "Description", "InstallQuote", "InstallQuoteTotal", "Insurance", "LaborTotal", "ManHours", "MaterialCost", "ProjectId", "SubCost", "Travel", "UnburdenedRate" },
+                values: new object[,]
+                {
+                    { 1, null, null, "Build out a 50000 page", null, null, null, null, 2.0, 50000.0, 1, 50000.0, null, null },
+                    { 3, null, null, "Build out a 5000 page", null, null, null, null, 6.0, 5000.0, 1, 5000.0, null, null },
+                    { 5, null, null, "Build out a 500 page", null, null, null, null, 6.0, 500.0, 1, 500.0, null, null },
+                    { 7, null, null, "Build out a free page", null, null, null, null, 6.0, 0.0, 1, 0.0, null, null },
+                    { 2, null, null, "Build out a 20000 page", null, null, null, null, 4.0, 20000.0, 2, 20000.0, null, null },
+                    { 4, null, null, "Build out a 1000 page", null, null, null, null, 6.0, 1000.0, 2, 1000.0, null, null },
+                    { 6, null, null, "Build out a 100 page", null, null, null, null, 6.0, 100.0, 2, 100.0, null, null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -550,6 +534,11 @@ namespace capstone.Migrations
                 column: "EmployeeTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LineItem_ProjectId",
+                table: "LineItem",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Project_ClientId",
                 table: "Project",
                 column: "ClientId");
@@ -594,12 +583,6 @@ namespace capstone.Migrations
                 name: "Margin");
 
             migrationBuilder.DropTable(
-                name: "Project");
-
-            migrationBuilder.DropTable(
-                name: "ProjectLineItem");
-
-            migrationBuilder.DropTable(
                 name: "TimeTracker");
 
             migrationBuilder.DropTable(
@@ -612,19 +595,22 @@ namespace capstone.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Project");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeTypePayRate");
+
+            migrationBuilder.DropTable(
                 name: "Client");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "EmployeeTypePayRate");
+                name: "EmployeeType");
 
             migrationBuilder.DropTable(
                 name: "ClientType");
-
-            migrationBuilder.DropTable(
-                name: "EmployeeType");
         }
     }
 }
