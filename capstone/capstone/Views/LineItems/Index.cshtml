@@ -37,28 +37,10 @@
                 @Html.DisplayNameFor(model => model.ManHours)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UnburdenedRate)
+                @Html.DisplayNameFor(model => model.LaborCost)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Insurance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LaborTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Travel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Consumables)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstallQuote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompositeLabor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstallQuoteTotal)
+                @Html.DisplayNameFor(model => model.LaborQuote)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuoteSalesTax)
@@ -98,28 +80,10 @@
                 @Html.DisplayFor(modelItem => item.ManHours)
             </td>
             <td>
-                @String.Format("{0:c}", item.UnburdenedRate)
+                @String.Format("{0:c}", item.LaborCost)
             </td>
             <td>
-                @String.Format("{0:c}", item.Insurance)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.LaborTotal)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.Travel)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.Consumables)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.InstallQuote)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.CompositeLabor)
-            </td>
-            <td>
-                @String.Format("{0:c}", item.InstallQuoteTotal)
+                @String.Format("{0:c}", item.LaborQuote)
             </td>
             <td>
                 @String.Format("{0:c}", item.QuoteSalesTax)

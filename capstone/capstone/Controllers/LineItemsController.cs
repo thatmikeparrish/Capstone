@@ -22,7 +22,7 @@ namespace capstone.Controllers
         // GET: LineItems
         public IActionResult Index()
         {
-            var allLineItems = _context.LineItem.Include("Project").Include("WorkforceCalc").Include("EmployeeTypePayRate").ToList().Select(li => new LineItem
+            var allLineItems = _context.LineItem.Include("Project").ToList().Select(li => new LineItem
             {
                 ProjectId = li.ProjectId,
                 Project = li.Project,
@@ -30,14 +30,8 @@ namespace capstone.Controllers
                 MaterialCost = li.MaterialCost,
                 SubCost = li.SubCost,
                 ManHours = li.ManHours,
-                UnburdenedRate = li.UnburdenedRate,
-                Insurance = li.Insurance,
-                LaborTotal = li.LaborTotal,
-                Travel = li.Travel,
-                Consumables = li.Consumables,
-                InstallQuote = li.InstallQuote,
-                CompositeLabor = li.CompositeLabor,
-                InstallQuoteTotal = li.InstallQuoteTotal,
+                LaborCost = li.ManHours * li.Project.UnburdenedRate,
+                LaborQuote = (li.ManHours * li.Project.UnburdenedRate) * (1 + li.Project.LaborMargin),
                 QuoteSalesTax = li.MaterialQuote * li.Project.SalesTax
             });
 

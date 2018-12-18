@@ -17,7 +17,6 @@ namespace capstone.Data
         public DbSet<EmployeeType> EmployeeType { get; set; }
         public DbSet<EmployeeTypePayRate> EmployeeTypePayRate { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
-        public DbSet<Margin> Margin { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
         public DbSet<Total> Total { get; set; }
@@ -50,9 +49,10 @@ namespace capstone.Data
                 ClientId = 1,
                 ProjectNumber = "17001",
                 SalesTax = .0975,
-                MarginsId = 1,
+                UnburdenedRate = 10,
+                LaborMargin = .1,
                 TotalId = 1,
-                WorkforceId = 1,
+                WorkforceCalcId = 1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
                 TimeTrackerId = 1
@@ -65,9 +65,10 @@ namespace capstone.Data
                 ClientId = 2,
                 ProjectNumber = "17002",
                 SalesTax = .0975,
-                MarginsId = 2,
+                UnburdenedRate = 20,
+                LaborMargin = .2,
                 TotalId = 2,
-                WorkforceId = 2,
+                WorkforceCalcId = 2,
                 IsCompleted = true,
                 TimeTrackerId = 2
             };
@@ -119,32 +120,6 @@ namespace capstone.Data
                     State = "TN",
                     ZipCode = "37130",
                     Comments = "My second test project!"
-                }
-            );
-
-            modelBuilder.Entity<Margin>().HasData(
-                new Margin()
-                {
-                    MarginId = 1,
-                    UnburdenedRate = 0,
-                    Insurance = 0,
-                    LaborTotal = 0,
-                    Travel = 0,
-                    Consumables = 0,
-                    Equipment = 0,
-                    CompositeLabor = 0,
-                },
-
-                new Margin()
-                {
-                    MarginId = 2,
-                    UnburdenedRate = 10,
-                    Insurance = 10,
-                    LaborTotal = 10,
-                    Travel = 10,
-                    Consumables = 10,
-                    Equipment = 10,
-                    CompositeLabor = 10,
                 }
             );
 

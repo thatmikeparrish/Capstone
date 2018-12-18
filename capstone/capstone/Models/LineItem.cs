@@ -142,37 +142,23 @@ namespace capstone.Models
 
         public double? ManHours { get; set; }
 
-        [Display(Name = "Unburdened Rate")]
-        public double? UnburdenedRate { get; set; }
+        [Display(Name = "Labor Cost")]
+        public double? LaborCost { get; set; }
 
-        public double? Insurance { get; set; }
-
-        [Display(Name = "Labor Total")]
-        public double? LaborTotal { get; set; }
-
-        public double? Travel { get; set; }
-
-        public double? Consumables { get; set; }
-
-        [Display(Name = "Install Quote")]
-        public double? InstallQuote { get; set; }
-
-        [Display(Name = "Composite Labor")]
-        public double? CompositeLabor { get; set; }
-
-        [Display(Name = "Install Quote Total")]
-        public double? InstallQuoteTotal { get; set; }
+        [Display(Name = "Labor Quote")]
+        public double? LaborQuote { get; set; }
 
         [NotMapped]
         [Display(Name = "Sales Tax")]
         public double? QuoteSalesTax { get; set; }
 
         [NotMapped]
+        [Display(Name = "Total (ex. Sales Tax)")]
         public double? Totals
         {
             get
             {
-                return MaterialQuote + SubQuote;
+                return MaterialQuote + SubQuote + LaborQuote;
             }
         }
 

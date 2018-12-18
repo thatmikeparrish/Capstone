@@ -26,10 +26,23 @@ namespace capstone.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Projects
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Project.Include(p => p.Client).Include(p => p.User);
-            return View(await applicationDbContext.ToListAsync());
+            var allProjects = _context.Project.Include("WorkforceCalc").Include("WorkfocreEmployee").ToList().Select(p => new Project
+            {
+                UserId = p.UserId,
+                ClientId = p.ClientId,
+                ProjectNumber = p.ProjectNumber,
+                UnburdenedRate = p.UnburdenedRate,
+                LaborMargin = p.LaborMargin,
+                TotalId = p.TotalId,
+                WorkforceCalcId = p.WorkforceCalcId,
+                CompletionDate = p.CompletionDate,
+                IsCompleted = p.IsCompleted,
+                TimeTrackerId = p.TimeTrackerId
+            });
+
+            return View(allProjects);
         }
 
         // GET: Projects/Details/5

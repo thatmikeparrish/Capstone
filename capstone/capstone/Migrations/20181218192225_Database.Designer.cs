@@ -10,8 +10,8 @@ using capstone.Data;
 namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181214212359_Initial")]
-    partial class Initial
+    [Migration("20181218192225_Database")]
+    partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,21 +152,13 @@ namespace capstone.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double?>("CompositeLabor");
-
-                    b.Property<double?>("Consumables");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500);
 
-                    b.Property<double?>("InstallQuote");
+                    b.Property<double?>("LaborCost");
 
-                    b.Property<double?>("InstallQuoteTotal");
-
-                    b.Property<double?>("Insurance");
-
-                    b.Property<double?>("LaborTotal");
+                    b.Property<double?>("LaborQuote");
 
                     b.Property<double?>("ManHours");
 
@@ -175,10 +167,6 @@ namespace capstone.Migrations
                     b.Property<int>("ProjectId");
 
                     b.Property<double?>("SubCost");
-
-                    b.Property<double?>("Travel");
-
-                    b.Property<double?>("UnburdenedRate");
 
                     b.HasKey("LineItemId");
 
@@ -197,36 +185,6 @@ namespace capstone.Migrations
                     );
                 });
 
-            modelBuilder.Entity("capstone.Models.Margin", b =>
-                {
-                    b.Property<int>("MarginId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double?>("CompositeLabor");
-
-                    b.Property<double?>("Consumables");
-
-                    b.Property<double?>("Equipment");
-
-                    b.Property<double?>("Insurance");
-
-                    b.Property<double?>("LaborTotal");
-
-                    b.Property<double?>("Travel");
-
-                    b.Property<double?>("UnburdenedRate");
-
-                    b.HasKey("MarginId");
-
-                    b.ToTable("Margin");
-
-                    b.HasData(
-                        new { MarginId = 1, CompositeLabor = 0.0, Consumables = 0.0, Equipment = 0.0, Insurance = 0.0, LaborTotal = 0.0, Travel = 0.0, UnburdenedRate = 0.0 },
-                        new { MarginId = 2, CompositeLabor = 10.0, Consumables = 10.0, Equipment = 10.0, Insurance = 10.0, LaborTotal = 10.0, Travel = 10.0, UnburdenedRate = 10.0 }
-                    );
-                });
-
             modelBuilder.Entity("capstone.Models.Project", b =>
                 {
                     b.Property<int>("ProjectId")
@@ -239,7 +197,7 @@ namespace capstone.Migrations
 
                     b.Property<bool?>("IsCompleted");
 
-                    b.Property<int?>("MarginsId");
+                    b.Property<double?>("LaborMargin");
 
                     b.Property<string>("ProjectNumber")
                         .IsRequired()
@@ -251,10 +209,12 @@ namespace capstone.Migrations
 
                     b.Property<int?>("TotalId");
 
+                    b.Property<double?>("UnburdenedRate");
+
                     b.Property<string>("UserId")
                         .IsRequired();
 
-                    b.Property<int?>("WorkforceId");
+                    b.Property<int?>("WorkforceCalcId");
 
                     b.HasKey("ProjectId");
 
@@ -262,11 +222,13 @@ namespace capstone.Migrations
 
                     b.HasIndex("UserId");
 
+                    b.HasIndex("WorkforceCalcId");
+
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, MarginsId = 1, ProjectNumber = "17001", SalesTax = 0.0975, TimeTrackerId = 1, TotalId = 1, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c", WorkforceId = 1 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = true, MarginsId = 2, ProjectNumber = "17002", SalesTax = 0.0975, TimeTrackerId = 2, TotalId = 2, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c", WorkforceId = 2 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 0.0975, TimeTrackerId = 1, TotalId = 1, UnburdenedRate = 10.0, UserId = "297b3f89-d7a8-4443-ae65-f86ed42c1d73", WorkforceCalcId = 1 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = true, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 0.0975, TimeTrackerId = 2, TotalId = 2, UnburdenedRate = 20.0, UserId = "297b3f89-d7a8-4443-ae65-f86ed42c1d73", WorkforceCalcId = 2 }
                     );
                 });
 
@@ -294,8 +256,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "69d775d9-40c3-431e-842a-477b5207ef7c" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "297b3f89-d7a8-4443-ae65-f86ed42c1d73" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "297b3f89-d7a8-4443-ae65-f86ed42c1d73" }
                     );
                 });
 
@@ -561,7 +523,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "69d775d9-40c3-431e-842a-477b5207ef7c", AccessFailedCount = 0, ConcurrencyStamp = "57d72688-ce1a-487a-9dd5-a6b50839e1f6", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEMLZKWQxy5Z8Sq3L7sFCWBjQpwZZbgpUrYgVtsU/ESeT2OFZUROODCAcz3YmUvkTkA==", PhoneNumberConfirmed = false, SecurityStamp = "644c9122-a497-4635-b043-25cf2746264f", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "297b3f89-d7a8-4443-ae65-f86ed42c1d73", AccessFailedCount = 0, ConcurrencyStamp = "647c6068-8592-4339-871e-89a4ef2a9414", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEG+xozCyPgnTYB45M0qlvSLZa2Z/G0q0gj9uxuIfpe7TycgWV6ItfJJ5VEp/i/mO3A==", PhoneNumberConfirmed = false, SecurityStamp = "1fdcb099-c078-4b58-9065-22f21b0fd14a", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 
@@ -600,6 +562,10 @@ namespace capstone.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("capstone.Models.WorkforceCalc", "WorkforceCalc")
+                        .WithMany()
+                        .HasForeignKey("WorkforceCalcId");
                 });
 
             modelBuilder.Entity("capstone.Models.TimeTracker", b =>

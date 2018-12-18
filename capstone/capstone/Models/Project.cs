@@ -29,11 +29,15 @@ namespace capstone.Models
 
         public double? SalesTax { get; set; }
 
-        public int? MarginsId { get; set; }
+        [Display(Name = "Unburdened Rate")]
+        public double? UnburdenedRate { get; set; }
+
+        [Display(Name = "Labor Margin")]
+        public double? LaborMargin { get; set; }
 
         public int? TotalId { get; set; }
 
-        public int? WorkforceId { get; set; }
+        public int? WorkforceCalcId { get; set; }
 
         public WorkforceCalc WorkforceCalc { get; set; }
 
@@ -47,5 +51,7 @@ namespace capstone.Models
         public int? TimeTrackerId { get; set; }
 
         public virtual ICollection<LineItem> LineItems { get; set;}
+
+        public virtual ICollection<WorkforceCalc> WorkforceCalcs { get; set;}
     }
 }
