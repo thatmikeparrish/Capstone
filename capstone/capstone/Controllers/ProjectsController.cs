@@ -28,41 +28,94 @@ namespace capstone.Controllers
         // GET: Projects
         public IActionResult Index()
         {
-            var allProjects = _context.Project.Include("WorkforceCalc").Include("WorkfocreEmployee").ToList().Select(p => new Project
-            {
-                UserId = p.UserId,
-                ClientId = p.ClientId,
-                ProjectNumber = p.ProjectNumber,
-                UnburdenedRate = p.UnburdenedRate,
-                LaborMargin = p.LaborMargin,
-                TotalId = p.TotalId,
-                WorkforceCalcId = p.WorkforceCalcId,
-                CompletionDate = p.CompletionDate,
-                IsCompleted = p.IsCompleted,
-                TimeTrackerId = p.TimeTrackerId
-            });
+            // Showing two different kinds of ways to do ".Include()"
+            var allProjects = _context.Project
+                .Include("Client")
+                .Include(p => p.LineItems)
+                .ToList()
+                .Select(p => new Project
+                {
+                    ProjectId = p.ProjectId,
+                    UserId = p.UserId,
+                    ClientId = p.ClientId,
+                    Client = p.Client,
+                    ProjectNumber = p.ProjectNumber,
+                    WorkDay = p.WorkDay,
+                    SalesTax = p.SalesTax,
+                    UnburdenedRate = p.UnburdenedRate,
+                    LaborMargin = p.LaborMargin,
+                    TotalId = p.TotalId,
+                    WorkforceCalcId = p.WorkforceCalcId,
+                    CompletionDate = p.CompletionDate,
+                    IsCompleted = p.IsCompleted,
+                    TimeTrackerId = p.TimeTrackerId,
+                    TotalMaterialCost = p.LineItems.Sum(m => m.MaterialCost),
+                    TotalMaterialQuote = p.LineItems.Sum(m => m.MaterialQuote),
+                    TotalSubCost = p.LineItems.Sum(m => m.SubCost),
+                    TotalSubQuote = p.LineItems.Sum(m => m.SubQuote),
+                    TotalManHours = p.LineItems.Sum(m => m.ManHours),
+                });
 
             return View(allProjects);
         }
 
         // GET: Projects/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Project
-                .Include(p => p.Client)
-                .Include(p => p.User)
-                .FirstOrDefaultAsync(m => m.ProjectId == id);
-            if (project == null)
+            var allProjects = _context.Project
+                .Include("Client")
+                .Include(p => p.LineItems)
+                .Where(m => m.ProjectId == id).
+                Select(p => new Project
+                {
+                    ProjectId = p.ProjectId,
+                    UserId = p.UserId,
+                    ClientId = p.ClientId,
+                    Client = p.Client,
+                    LineItems = p.LineItems,
+                    ProjectNumber = p.ProjectNumber,
+                    WorkDay = p.WorkDay,
+                    SalesTax = p.SalesTax,
+                    UnburdenedRate = p.UnburdenedRate,
+                    LaborMargin = p.LaborMargin,
+                    TotalId = p.TotalId,
+                    WorkforceCalcId = p.WorkforceCalcId,
+                    CompletionDate = p.CompletionDate,
+                    IsCompleted = p.IsCompleted,
+                    TimeTrackerId = p.TimeTrackerId,
+                    TotalMaterialCost = p.LineItems.Sum(m => m.MaterialCost),
+                    TotalMaterialQuote = p.LineItems.Sum(m => m.MaterialQuote),
+                    TotalSubCost = p.LineItems.Sum(m => m.SubCost),
+                    TotalSubQuote = p.LineItems.Sum(m => m.SubQuote),
+                    TotalManHours = p.LineItems.Sum(m => m.ManHours),
+                })
+                .FirstOrDefault();
+
+                allProjects.LineItems = allProjects.LineItems
+                .Select(li => new LineItem
+                {
+                    ProjectId = li.ProjectId,
+                    Project = li.Project,
+                    Description = li.Description,
+                    MaterialCost = li.MaterialCost,
+                    SubCost = li.SubCost,
+                    ManHours = li.ManHours,
+                    LaborCost = li.ManHours * allProjects.UnburdenedRate,
+                    LaborQuote = (li.ManHours * allProjects.UnburdenedRate) * (1 + allProjects.LaborMargin),
+                    QuoteSalesTax = li.MaterialQuote * allProjects.ProjectSalesTax
+                }).ToList();
+
+            if (allProjects == null)
             {
                 return NotFound();
             }
 
-            return View(project);
+            return View(allProjects);
         }
 
         // GET: Projects/Create

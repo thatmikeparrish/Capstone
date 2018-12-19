@@ -15,6 +15,9 @@ namespace capstone.Models
 
         public EmployeeTypePayRate EmployeeTypePayRate { get; set; }
 
+        [Display(Name = "Working Days")]
+        public double? WorkingDays { get; set; }
+
         [Display(Name = "Managment Hours")]
         public double? ManagmentHours { get; set; }
 

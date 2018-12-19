@@ -5,7 +5,6 @@ C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\bin\Debug\netcore
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\bin\Debug\netcoreapp2.1\capstone.pdb
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\bin\Debug\netcoreapp2.1\capstone.Views.dll
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\bin\Debug\netcoreapp2.1\capstone.Views.pdb
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\capstone.csprojAssemblyReference.cache
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\capstone.csproj.CoreCompileInputs.cache
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\capstone.RazorAssemblyInfo.cache
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\capstone.RazorAssemblyInfo.cs
@@ -68,11 +67,6 @@ C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcore
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\TimeTrackers\Details.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\TimeTrackers\Edit.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\TimeTrackers\Index.g.cshtml.cs
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Totals\Create.g.cshtml.cs
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Totals\Delete.g.cshtml.cs
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Totals\Details.g.cshtml.cs
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Totals\Edit.g.cshtml.cs
-C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Totals\Index.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\WorkforceCalcs\Create.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\WorkforceCalcs\Delete.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\WorkforceCalcs\Details.g.cshtml.cs

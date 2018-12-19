@@ -4,55 +4,239 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Project Details</h2>
+<br />
 
 <div>
-    <h4>Project</h4>
+    <h3>Project @Html.DisplayFor(model => model.ProjectNumber)</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Client.FirstName) @Html.DisplayFor(model => model.Client.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ProjectNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TotalId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkforceCalcId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WorkforceCalcId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CompletionDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CompletionDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsCompleted)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsCompleted)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeTrackerId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TimeTrackerId)
-        </dd>
-    </dl>
+    <h4>Client Contact</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.StreetAddress)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Client.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Client.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Client.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Client.StreetAddress) @Html.DisplayFor(model => model.Client.City), @Html.DisplayFor(model => model.Client.State) @Html.DisplayFor(model => model.Client.ZipCode)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Project Margins</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectSalesTax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkDay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnburdenedRate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @String.Format("{0:P2}", Model.ProjectSalesTax)
+                </td>
+                <td>
+                    Expected @Html.DisplayFor(model => model.WorkDay) hours per day.
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.UnburdenedRate)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Totals</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalMaterialCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalMaterialMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalMaterialQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSubCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSubMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSubQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalManHours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalLaborCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LaborMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalLaborQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSalesTax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrandTotal)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @String.Format("{0:c}", Model.TotalMaterialCost)
+                </td>
+                <td>
+                    @String.Format("{0:P0}", Model.TotalMaterialMargin)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalMaterialQuote)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalSubCost)
+                </td>
+                <td>
+                    @String.Format("{0:P0}", Model.TotalSubMargin)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalSubQuote)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalManHours)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalLaborCost)
+                </td>
+                <td>
+                    @String.Format("{0:P0}", Model.LaborMargin)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalLaborQuote)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.TotalSalesTax)
+                </td>
+                <td>
+                    @String.Format("{0:c}", Model.GrandTotal)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Line Items</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Material Cost
+                </th>
+                <th>
+                    Material Margin
+                </th>
+                <th>
+                    Material Quote
+                </th>
+                <th>
+                    Subcontractor Cost
+                </th>
+                <th>
+                    Subcontractor Margin
+                </th>
+                <th>
+                    Subcontractor Quote
+                </th>
+                <th>
+                    ManHours
+                </th>
+                <th>
+                    Labor Cost
+                </th>
+                <th>
+                    Labor Quote
+                </th>
+                <th>
+                    Sales Tax
+                </th>
+                <th>
+                    Total (ex. Sales Tax)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (LineItem li in Model.LineItems)
+            {
+                <tr>
+                    <td>
+                        @String.Format("{0:c}", li.MaterialCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", li.MaterialMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.MaterialQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.SubCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", li.SubMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.SubQuote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => li.ManHours)
+                    </td>
+                    <td>
+                       heyo @li.LaborCost
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.LaborQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.QuoteSalesTax)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", li.Total)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |

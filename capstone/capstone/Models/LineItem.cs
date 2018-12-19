@@ -75,7 +75,7 @@ namespace capstone.Models
                 }
                 else
                 {
-                    return MaterialCost* (1 + MaterialMargin);
+                    return MaterialCost * (1 + MaterialMargin);
                 }
             }
         }
@@ -135,16 +135,18 @@ namespace capstone.Models
                 }
                 else
                 {
-                    return SubCost* (1 + SubMargin);
+                    return SubCost * (1 + SubMargin);
                 }
             }
         }
 
         public double? ManHours { get; set; }
 
+        [NotMapped]
         [Display(Name = "Labor Cost")]
         public double? LaborCost { get; set; }
 
+        [NotMapped]
         [Display(Name = "Labor Quote")]
         public double? LaborQuote { get; set; }
 
@@ -154,7 +156,7 @@ namespace capstone.Models
 
         [NotMapped]
         [Display(Name = "Total (ex. Sales Tax)")]
-        public double? Totals
+        public double? Total
         {
             get
             {

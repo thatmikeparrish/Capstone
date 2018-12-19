@@ -32,7 +32,7 @@ namespace capstone.Controllers
                 ManHours = li.ManHours,
                 LaborCost = li.ManHours * li.Project.UnburdenedRate,
                 LaborQuote = (li.ManHours * li.Project.UnburdenedRate) * (1 + li.Project.LaborMargin),
-                QuoteSalesTax = li.MaterialQuote * li.Project.SalesTax
+                QuoteSalesTax = li.MaterialQuote * li.Project.ProjectSalesTax
             });
 
             return View(allLineItems);

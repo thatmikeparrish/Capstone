@@ -46,7 +46,7 @@
                 @Html.DisplayNameFor(model => model.QuoteSalesTax)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Totals)
+                @Html.DisplayNameFor(model => model.Total)
             </th>
             <th></th>
         </tr>
@@ -89,7 +89,7 @@
                 @String.Format("{0:c}", item.QuoteSalesTax)
             </td>
             <td>
-                @String.Format("{0:c}", item.Totals)
+                @String.Format("{0:c}", item.Total)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.LineItemId">Edit</a> |

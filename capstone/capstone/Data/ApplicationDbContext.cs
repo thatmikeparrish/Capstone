@@ -19,7 +19,6 @@ namespace capstone.Data
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
-        public DbSet<Total> Total { get; set; }
         public DbSet<WorkforceCalc> WorkforceCalc { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,7 +47,8 @@ namespace capstone.Data
                 UserId = user.Id,
                 ClientId = 1,
                 ProjectNumber = "17001",
-                SalesTax = .0975,
+                WorkDay = 8,
+                SalesTax = 9.75,
                 UnburdenedRate = 10,
                 LaborMargin = .1,
                 TotalId = 1,
@@ -64,7 +64,8 @@ namespace capstone.Data
                 UserId = user.Id,
                 ClientId = 2,
                 ProjectNumber = "17002",
-                SalesTax = .0975,
+                WorkDay = 8,
+                SalesTax = 9.75,
                 UnburdenedRate = 20,
                 LaborMargin = .2,
                 TotalId = 2,
