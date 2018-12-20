@@ -1,4 +1,6 @@
-﻿using System;
+﻿using capstone.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +15,7 @@ namespace capstone.Models
         public int LineItemId { get; set; }
 
         [Required]
+        [Display(Name = "Project")]
         public int ProjectId { get; set; }
 
         public Project Project { get; set; }

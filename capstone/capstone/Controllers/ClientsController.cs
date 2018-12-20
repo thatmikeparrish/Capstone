@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
@@ -20,6 +21,7 @@ namespace capstone.Controllers
         }
 
         // GET: Clients
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Client.Include(c => c.ClientType);
@@ -27,6 +29,7 @@ namespace capstone.Controllers
         }
 
         // GET: Clients/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace capstone.Controllers
         }
 
         // GET: Clients/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["ClientTypeId"] = new SelectList(_context.ClientType, "ClientTypeId", "Category");
@@ -57,6 +61,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ClientId,ClientTypeId,CompanyName,FirstName,LastName,Email,PhoneNumber,StreetAddress,City,State,ZipCode,Comments")] Client client)
         {
             if (ModelState.IsValid)
@@ -70,6 +75,7 @@ namespace capstone.Controllers
         }
 
         // GET: Clients/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +97,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ClientId,ClientTypeId,CompanyName,FirstName,LastName,Email,PhoneNumber,StreetAddress,City,State,ZipCode,Comments")] Client client)
         {
             if (id != client.ClientId)
@@ -123,6 +130,7 @@ namespace capstone.Controllers
         }
 
         // GET: Clients/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,6 +150,7 @@ namespace capstone.Controllers
         }
 
         // POST: Clients/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

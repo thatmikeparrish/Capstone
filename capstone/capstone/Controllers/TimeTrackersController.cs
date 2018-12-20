@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
@@ -20,6 +21,7 @@ namespace capstone.Controllers
         }
 
         // GET: TimeTrackers
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.TimeTracker.Include(t => t.User);
@@ -27,6 +29,7 @@ namespace capstone.Controllers
         }
 
         // GET: TimeTrackers/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace capstone.Controllers
         }
 
         // GET: TimeTrackers/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
@@ -57,6 +61,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("TimeTrackerId,UserId,Date,Hours,Comments")] TimeTracker timeTracker)
         {
             if (ModelState.IsValid)
@@ -70,6 +75,7 @@ namespace capstone.Controllers
         }
 
         // GET: TimeTrackers/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +97,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("TimeTrackerId,UserId,Date,Hours,Comments")] TimeTracker timeTracker)
         {
             if (id != timeTracker.TimeTrackerId)
@@ -123,6 +130,7 @@ namespace capstone.Controllers
         }
 
         // GET: TimeTrackers/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,6 +150,7 @@ namespace capstone.Controllers
         }
 
         // POST: TimeTrackers/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

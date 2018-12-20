@@ -10,84 +10,92 @@
 <div>
     <h4>LineItem</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaterialCost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialMargin)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaterialMargin)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialQuote)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaterialQuote)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SubCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SubCost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SubMargin)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SubMargin)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SubQuote)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SubQuote)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ManHours)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ManHours)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LaborCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LaborCost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LaborQuote)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LaborQuote)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.QuoteSalesTax)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.QuoteSalesTax)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-    </dl>
-    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManHours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LaborCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LaborQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuoteSalesTax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        @String.Format("{0:c}", Model.Description)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.MaterialCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", Model.MaterialMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.MaterialQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.SubCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", Model.SubMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.SubQuote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.ManHours)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.LaborCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.LaborQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.QuoteSalesTax)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.Total)
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="LineItemId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-default">Cancel</a>
     </form>
 </div>

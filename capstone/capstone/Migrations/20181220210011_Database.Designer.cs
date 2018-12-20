@@ -10,7 +10,7 @@ using capstone.Data;
 namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181219214309_Database")]
+    [Migration("20181220210011_Database")]
     partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,8 +235,8 @@ namespace capstone.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, TimeTrackerId = 1, TotalId = 1, UnburdenedRate = 10.0, UserId = "7859a242-6f9d-40f7-a2ee-56c1b825d41c", WorkDay = 8, WorkforceCalcId = 1 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = true, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, TotalId = 2, UnburdenedRate = 20.0, UserId = "7859a242-6f9d-40f7-a2ee-56c1b825d41c", WorkDay = 8, WorkforceCalcId = 2 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, TimeTrackerId = 1, TotalId = 1, UnburdenedRate = 10.0, UserId = "2d5b41e9-7140-49a3-b886-9e475f3d42a9", WorkDay = 8, WorkforceCalcId = 1 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = true, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, TotalId = 2, UnburdenedRate = 20.0, UserId = "2d5b41e9-7140-49a3-b886-9e475f3d42a9", WorkDay = 8, WorkforceCalcId = 2 }
                     );
                 });
 
@@ -264,8 +264,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "7859a242-6f9d-40f7-a2ee-56c1b825d41c" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "7859a242-6f9d-40f7-a2ee-56c1b825d41c" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "2d5b41e9-7140-49a3-b886-9e475f3d42a9" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "2d5b41e9-7140-49a3-b886-9e475f3d42a9" }
                     );
                 });
 
@@ -490,7 +490,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "7859a242-6f9d-40f7-a2ee-56c1b825d41c", AccessFailedCount = 0, ConcurrencyStamp = "09342efa-ac30-46ce-952b-d0d65d691c25", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAELjTAJ+gxD1RzL3hCXRjakXQqTdqwk5x9lfXma7FSF1Y0lfBPcfnnE7abP2+javDXQ==", PhoneNumberConfirmed = false, SecurityStamp = "a2bbf03e-248d-48fd-a7ae-7eb4248bef43", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "2d5b41e9-7140-49a3-b886-9e475f3d42a9", AccessFailedCount = 0, ConcurrencyStamp = "bca4cfbd-3b2d-430f-8be0-1bb4827f4927", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAECJtKPjanvnsi8LJYcLpDtx1oO+DDXR5VNnjVdX8wLugoYK6KgVTFhkPrMWSdwF5iA==", PhoneNumberConfirmed = false, SecurityStamp = "792af952-7c4c-49f9-ad3d-6917f762373f", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 

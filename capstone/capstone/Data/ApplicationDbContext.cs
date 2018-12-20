@@ -51,7 +51,6 @@ namespace capstone.Data
                 SalesTax = 9.75,
                 UnburdenedRate = 10,
                 LaborMargin = .1,
-                TotalId = 1,
                 WorkforceCalcId = 1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
@@ -68,7 +67,6 @@ namespace capstone.Data
                 SalesTax = 9.75,
                 UnburdenedRate = 20,
                 LaborMargin = .2,
-                TotalId = 2,
                 WorkforceCalcId = 2,
                 IsCompleted = true,
                 TimeTrackerId = 2

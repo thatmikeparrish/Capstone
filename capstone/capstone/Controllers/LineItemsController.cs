@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
@@ -20,10 +21,12 @@ namespace capstone.Controllers
         }
 
         // GET: LineItems
+        [Authorize]
         public IActionResult Index()
         {
             var allLineItems = _context.LineItem.Include("Project").ToList().Select(li => new LineItem
             {
+                LineItemId = li.LineItemId,
                 ProjectId = li.ProjectId,
                 Project = li.Project,
                 Description = li.Description,
@@ -39,6 +42,7 @@ namespace capstone.Controllers
         }
 
         // GET: LineItems/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,8 +61,10 @@ namespace capstone.Controllers
         }
 
         // GET: LineItems/Create
+        [Authorize]
         public IActionResult Create()
         {
+            ViewData["ProjectId"] = new SelectList(_context.Project, "ProjectId", "ProjectNumber");
             return View();
         }
 
@@ -67,18 +73,22 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubMargin,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
+        [Authorize]
+        public async Task<IActionResult> Create([Bind("LineItemId,ProjectId,Description,MaterialCost,SubCost,ManHours")] LineItem lineItem)
         {
             if (ModelState.IsValid)
             {
+                var ProjectId = lineItem.ProjectId;
                 _context.Add(lineItem);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Projects", new { id = ProjectId });
             }
+            ViewData["ProjectId"] = new SelectList(_context.Project, "ProjectId", "ProjectNumber");
             return View(lineItem);
         }
 
         // GET: LineItems/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,7 +109,8 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LineItemId,Description,MaterialCost,MaterialMargin,MaterialQuote,SubCost,SubMargin,SubQuote,ManHours,UnburdenedRate,Insurance,LaborTotal,Travel,Consumables,InstallQuote,CompositeLabor,InstallQuoteTotal,SalesTax,Totals")] LineItem lineItem)
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, [Bind("LineItemId,ProjectId,Description,MaterialCost,SubCost,ManHours")] LineItem lineItem)
         {
             if (id != lineItem.LineItemId)
             {
@@ -130,15 +141,29 @@ namespace capstone.Controllers
         }
 
         // GET: LineItems/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [Authorize]
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var lineItem = await _context.LineItem
-                .FirstOrDefaultAsync(m => m.LineItemId == id);
+            var lineItem = _context.LineItem.Include("Project").ToList().Select(li => new LineItem
+            {
+                LineItemId = li.LineItemId,
+                ProjectId = li.ProjectId,
+                Project = li.Project,
+                Description = li.Description,
+                MaterialCost = li.MaterialCost,
+                SubCost = li.SubCost,
+                ManHours = li.ManHours,
+                LaborCost = li.ManHours * li.Project.UnburdenedRate,
+                LaborQuote = (li.ManHours * li.Project.UnburdenedRate) * (1 + li.Project.LaborMargin),
+                QuoteSalesTax = li.MaterialQuote * li.Project.ProjectSalesTax
+            })
+                .FirstOrDefault(m => m.LineItemId == id);
+
             if (lineItem == null)
             {
                 return NotFound();
@@ -148,14 +173,16 @@ namespace capstone.Controllers
         }
 
         // POST: LineItems/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var lineItem = await _context.LineItem.FindAsync(id);
+            var ProjectId = lineItem.ProjectId;
             _context.LineItem.Remove(lineItem);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Projects", new { id = ProjectId});
         }
 
         private bool LineItemExists(int id)

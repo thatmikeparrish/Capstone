@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
@@ -20,12 +21,14 @@ namespace capstone.Controllers
         }
 
         // GET: WorkforceCalcs
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.WorkforceCalc.ToListAsync());
         }
 
         // GET: WorkforceCalcs/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace capstone.Controllers
         }
 
         // GET: WorkforceCalcs/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("WorkforceCalcId,EmployeePayRateId,ManagmentHours,ManagmentCost,LaborHours,LaborCost")] WorkforceCalc workforceCalc)
         {
             if (ModelState.IsValid)
@@ -66,6 +71,7 @@ namespace capstone.Controllers
         }
 
         // GET: WorkforceCalcs/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +92,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("WorkforceCalcId,EmployeePayRateId,ManagmentHours,ManagmentCost,LaborHours,LaborCost")] WorkforceCalc workforceCalc)
         {
             if (id != workforceCalc.WorkforceCalcId)
@@ -117,6 +124,7 @@ namespace capstone.Controllers
         }
 
         // GET: WorkforceCalcs/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +143,7 @@ namespace capstone.Controllers
         }
 
         // POST: WorkforceCalcs/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

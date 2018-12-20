@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using capstone.Data;
 using capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace capstone.Controllers
 {
@@ -20,12 +21,14 @@ namespace capstone.Controllers
         }
 
         // GET: ClientTypes
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ClientType.ToListAsync());
         }
 
         // GET: ClientTypes/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace capstone.Controllers
         }
 
         // GET: ClientTypes/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ClientTypeId,Category")] ClientType clientType)
         {
             if (ModelState.IsValid)
@@ -66,6 +71,7 @@ namespace capstone.Controllers
         }
 
         // GET: ClientTypes/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +92,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ClientTypeId,Category")] ClientType clientType)
         {
             if (id != clientType.ClientTypeId)
@@ -117,6 +124,7 @@ namespace capstone.Controllers
         }
 
         // GET: ClientTypes/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +143,7 @@ namespace capstone.Controllers
         }
 
         // POST: ClientTypes/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -26,6 +26,7 @@ namespace capstone.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Projects
+        [Authorize]
         public IActionResult Index()
         {
             // Showing two different kinds of ways to do ".Include()"
@@ -60,6 +61,7 @@ namespace capstone.Controllers
         }
 
         // GET: Projects/Details/5
+        [Authorize]
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace capstone.Controllers
                 allProjects.LineItems = allProjects.LineItems
                 .Select(li => new LineItem
                 {
+                    LineItemId = li.LineItemId,
                     ProjectId = li.ProjectId,
                     Project = li.Project,
                     Description = li.Description,
@@ -119,6 +122,7 @@ namespace capstone.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize]
         public IActionResult Create()
         {
            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName");
@@ -131,6 +135,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ProjectId,UserId,ClientId,ProjectNumber,MarginsId,LineItemId,TotalId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
         {
             var user = await GetCurrentUserAsync();
@@ -149,6 +154,7 @@ namespace capstone.Controllers
         }
 
         // GET: Projects/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -171,6 +177,7 @@ namespace capstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,MarginsId,LineItemId,TotalId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
         {
             if (id != project.ProjectId)
@@ -204,6 +211,7 @@ namespace capstone.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -224,6 +232,7 @@ namespace capstone.Controllers
         }
 
         // POST: Projects/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
