@@ -26,6 +26,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Client.StreetAddress)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsCompleted)
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +45,13 @@
                 <td>
                     @Html.DisplayFor(model => model.Client.StreetAddress) @Html.DisplayFor(model => model.Client.City), @Html.DisplayFor(model => model.Client.State) @Html.DisplayFor(model => model.Client.ZipCode)
                 </td>
+                <td>
+                    @String.Format("{0:c}", Model.IsCompleted)
+                </td>
             </tr>
         </tbody>
     </table>
-    <h4>Project Margins</h4>
+    <h4>Project Info</h4>
     <table class="table">
         <thead>
             <tr>

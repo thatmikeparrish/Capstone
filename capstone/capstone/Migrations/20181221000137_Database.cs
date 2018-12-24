@@ -353,7 +353,7 @@ namespace capstone.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName" },
-                values: new object[] { "2d5b41e9-7140-49a3-b886-9e475f3d42a9", 0, "bca4cfbd-3b2d-430f-8be0-1bb4827f4927", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAECJtKPjanvnsi8LJYcLpDtx1oO+DDXR5VNnjVdX8wLugoYK6KgVTFhkPrMWSdwF5iA==", null, false, "792af952-7c4c-49f9-ad3d-6917f762373f", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
+                values: new object[] { "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", 0, "a82612c1-d70d-424f-93d8-e04f10e0c6d1", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAED7gQX+RClbFl6l5RA7HLS0f5YdL5opKa1mxlmiGquPR/WyhcK+7VKCKMkZ30PojdA==", null, false, "447f1cbc-5dfa-4f58-8f78-4a55020bd5df", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
 
             migrationBuilder.InsertData(
                 table: "ClientType",
@@ -406,19 +406,19 @@ namespace capstone.Migrations
                 columns: new[] { "TimeTrackerId", "Comments", "Date", "Hours", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, "2d5b41e9-7140-49a3-b886-9e475f3d42a9" },
-                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6.0, "2d5b41e9-7140-49a3-b886-9e475f3d42a9" }
+                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, "9de107e4-9a61-47d0-8804-b2aff4cc2c9a" },
+                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6.0, "9de107e4-9a61-47d0-8804-b2aff4cc2c9a" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Project",
                 columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "TimeTrackerId", "TotalId", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UnburdenedRate", "UserId", "WorkDay", "WorkforceCalcId" },
-                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 0.1, "17001", 9.75, 1, 1, null, null, null, null, null, 10.0, "2d5b41e9-7140-49a3-b886-9e475f3d42a9", 8, 1 });
+                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 0.1, "17001", 9.75, 1, null, null, null, null, null, null, 10.0, "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", 8, 1 });
 
             migrationBuilder.InsertData(
                 table: "Project",
                 columns: new[] { "ProjectId", "ClientId", "CompletionDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "TimeTrackerId", "TotalId", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UnburdenedRate", "UserId", "WorkDay", "WorkforceCalcId" },
-                values: new object[] { 2, 2, null, true, 0.2, "17002", 9.75, 2, 2, null, null, null, null, null, 20.0, "2d5b41e9-7140-49a3-b886-9e475f3d42a9", 8, 2 });
+                values: new object[] { 2, 2, null, false, 0.2, "17002", 9.75, 2, null, null, null, null, null, null, 20.0, "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", 8, 2 });
 
             migrationBuilder.InsertData(
                 table: "LineItem",

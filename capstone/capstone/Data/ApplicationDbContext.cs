@@ -68,7 +68,7 @@ namespace capstone.Data
                 UnburdenedRate = 20,
                 LaborMargin = .2,
                 WorkforceCalcId = 2,
-                IsCompleted = true,
+                IsCompleted = false,
                 TimeTrackerId = 2
             };
 

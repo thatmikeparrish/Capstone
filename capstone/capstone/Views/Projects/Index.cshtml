@@ -36,7 +36,7 @@
                 <a asp-area="" asp-controller="Clients" asp-action="Details" asp-route-id="@item.ClientId">@Html.DisplayFor(modelItem => item.Client.FirstName) @Html.DisplayFor(modelItem => item.Client.LastName)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
+                @String.Format("{0:c}", item.IsCompleted)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CompletionDate)
