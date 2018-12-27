@@ -95,7 +95,8 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="LineItemId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        &nbsp&nbsp&nbsp
         <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-default">Cancel</a>
     </form>
 </div>

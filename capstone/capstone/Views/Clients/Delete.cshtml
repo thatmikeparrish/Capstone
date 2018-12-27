@@ -81,7 +81,8 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ClientId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        &nbsp&nbsp&nbsp
+        <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Back to List</a>
     </form>
 </div>

@@ -34,7 +34,7 @@
         <tbody>
             <tr>
                 <td>
-                    @Html.DisplayFor(model => model.Client.FullName)
+                    <a asp-area="" asp-controller="Clients" asp-action="Details" asp-route-id="@Model.Client.ClientId" class="btn btn-primary">@Html.DisplayFor(model => model.Client.FullName)</a>
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.Client.PhoneNumber)
@@ -259,5 +259,5 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-primary">Edit</a>
     &nbsp&nbsp&nbsp
-    <a asp-action="Index" class="btn btn-default">Back to List</a>
+    <a asp-action="Index" class="btn btn-default">Back</a>
 </div>
