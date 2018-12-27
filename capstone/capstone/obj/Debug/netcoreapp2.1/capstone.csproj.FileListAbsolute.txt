@@ -79,3 +79,4 @@ C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcore
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
 C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\capstone.csprojAssemblyReference.cache
+C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\obj\Debug\netcoreapp2.1\Razor\Views\Projects\Quote.g.cshtml.cs

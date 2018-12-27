@@ -124,12 +124,21 @@ namespace capstone.Models
             }
         }
 
-        [Display(Name = "Quote Value")]
+        [Display(Name = "Grand Total (ex. Sales Tax)")]
         public double? GrandTotal
         {
             get
             {
-                return TotalMaterialQuote + TotalSalesTax + TotalSubQuote + TotalLaborQuote;
+                return TotalMaterialQuote + TotalSubQuote + TotalLaborQuote;
+            }
+        }
+
+        [Display(Name = "Quote Value")]
+        public double? QuoteTotal
+        {
+            get
+            {
+                return GrandTotal + TotalSalesTax;
             }
         }
 
