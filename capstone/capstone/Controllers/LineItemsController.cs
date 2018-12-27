@@ -112,6 +112,7 @@ namespace capstone.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("LineItemId,ProjectId,Description,MaterialCost,SubCost,ManHours")] LineItem lineItem)
         {
+            var ProjectId = lineItem.ProjectId;
             if (id != lineItem.LineItemId)
             {
                 return NotFound();
@@ -135,7 +136,7 @@ namespace capstone.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Projects", new { id = ProjectId });
             }
             return View(lineItem);
         }

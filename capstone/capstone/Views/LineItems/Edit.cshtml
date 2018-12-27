@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="LineItemId" />
+            <input type="hidden" asp-for="ProjectId" />
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
@@ -24,19 +25,9 @@
                 <span asp-validation-for="MaterialCost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaterialMargin" class="control-label"></label>
-                <input asp-for="MaterialMargin" class="form-control" />
-                <span asp-validation-for="MaterialMargin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="SubCost" class="control-label"></label>
                 <input asp-for="SubCost" class="form-control" />
                 <span asp-validation-for="SubCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubMargin" class="control-label"></label>
-                <input asp-for="SubMargin" class="form-control" />
-                <span asp-validation-for="SubMargin" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ManHours" class="control-label"></label>

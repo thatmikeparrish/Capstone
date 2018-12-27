@@ -233,8 +233,8 @@ namespace capstone.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, TimeTrackerId = 1, UnburdenedRate = 10.0, UserId = "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", WorkDay = 8, WorkforceCalcId = 1 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UnburdenedRate = 20.0, UserId = "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", WorkDay = 8, WorkforceCalcId = 2 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, TimeTrackerId = 1, UnburdenedRate = 10.0, UserId = "ba159711-5fb8-40dd-acd1-4f917d6f25fe", WorkDay = 8, WorkforceCalcId = 1 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UnburdenedRate = 20.0, UserId = "ba159711-5fb8-40dd-acd1-4f917d6f25fe", WorkDay = 8, WorkforceCalcId = 2 }
                     );
                 });
 
@@ -262,8 +262,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "9de107e4-9a61-47d0-8804-b2aff4cc2c9a" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "9de107e4-9a61-47d0-8804-b2aff4cc2c9a" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "ba159711-5fb8-40dd-acd1-4f917d6f25fe" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "ba159711-5fb8-40dd-acd1-4f917d6f25fe" }
                     );
                 });
 
@@ -488,7 +488,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "9de107e4-9a61-47d0-8804-b2aff4cc2c9a", AccessFailedCount = 0, ConcurrencyStamp = "a82612c1-d70d-424f-93d8-e04f10e0c6d1", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAED7gQX+RClbFl6l5RA7HLS0f5YdL5opKa1mxlmiGquPR/WyhcK+7VKCKMkZ30PojdA==", PhoneNumberConfirmed = false, SecurityStamp = "447f1cbc-5dfa-4f58-8f78-4a55020bd5df", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "ba159711-5fb8-40dd-acd1-4f917d6f25fe", AccessFailedCount = 0, ConcurrencyStamp = "d5d3ce72-10a9-4a59-bcca-52e70e0378a8", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEPSpFhJ44qnYx/1HqS8fyELobJ2hxhucRRSLUjMjByL0Wqwsi2zF9Ge6rRre/s4CGA==", PhoneNumberConfirmed = false, SecurityStamp = "07b98943-8182-4791-8862-39cee8fdc29b", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 

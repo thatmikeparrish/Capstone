@@ -17,14 +17,18 @@
     </form>
 
     <ul class="nav navbar-nav">
+        @*<li><a asp-area="Identity" asp-page="/Account/Register">New User</a></li>*@
         <li><a asp-area="" asp-controller="Clients" asp-action="Index">Client List</a></li>
         <li><a asp-area="" asp-controller="Projects" asp-action="Index">Project List</a></li>
     </ul>
 }
 else
 {
+    <ul class="nav navbar-nav">
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+    </ul>
+
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
         <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
     </ul>
 }

@@ -164,7 +164,7 @@
         </tbody>
     </table>
     <h4>Line Items</h4>
-    <a asp-controller="LineItems" asp-action="Create">Add Item</a>
+    <a asp-controller="LineItems" asp-action="Create" class="btn btn-success">Add Item</a>
     <table class="table">
         <thead>
             <tr>
@@ -204,6 +204,7 @@
                 <th>
                     Total (ex. Sales Tax)
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -247,8 +248,8 @@
                     @String.Format("{0:c}", li.Total)
                 </td>
                 <td>
-                    <a asp-controller="LineItems" asp-action="Edit" asp-route-id="@li.LineItemId">Edit</a> |
-                    <a asp-controller="LineItems" asp-action="Delete" asp-route-id="@li.LineItemId">Delete</a>
+                    <a asp-controller="LineItems" asp-action="Edit" asp-route-id="@li.LineItemId" class="lineItembtn btn btn-primary">Edit</a>
+                    <a asp-controller="LineItems" asp-action="Delete" asp-route-id="@li.LineItemId" class="lineItembtn btn btn-danger">Delete</a>
                 </td>
             </tr>
             }
@@ -256,6 +257,7 @@
     </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-primary">Edit</a>
+    &nbsp&nbsp&nbsp
+    <a asp-action="Index" class="btn btn-default">Back to List</a>
 </div>

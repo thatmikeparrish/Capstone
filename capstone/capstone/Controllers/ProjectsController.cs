@@ -148,7 +148,7 @@ namespace capstone.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", project.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName", project.ClientId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", project.UserId);
             return View(project);
         }
@@ -167,7 +167,7 @@ namespace capstone.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "City", project.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName", project.ClientId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", project.UserId);
             return View(project);
         }
@@ -178,7 +178,7 @@ namespace capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,MarginsId,LineItemId,TotalId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,LineItemId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
         {
             if (id != project.ProjectId)
             {
@@ -205,7 +205,7 @@ namespace capstone.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "City", project.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName", project.ClientId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", project.UserId);
             return View(project);
         }
