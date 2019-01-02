@@ -1,0 +1,65 @@
+﻿header, footer, aside, nav, form, iframe, .menu, .hero, .adslot, .btn {
+    display: none;
+}
+
+.row {
+    display: inline-flex;
+    margin: 0 5rem 0 5rem;
+    width: 100%;
+}
+
+.quote {
+    width: 80%;
+    background-color: white;
+    color: black;
+}
+
+.topRow {
+    margin-bottom: 1rem;
+}
+
+.submitDate {
+    padding: 10rem 0 10rem 0;
+}
+
+.quoteLogo {
+    height: 20rem;
+}
+
+.quoteInfo {
+    min-height: 9.6rem;
+    margin-bottom: 2rem;
+}
+
+.borderTop {
+    border-top: 3px solid black;
+}
+
+.borderRight {
+    border-right: 3px solid black;
+}
+
+.borderBottom {
+    border-bottom: 3px solid black;
+}
+
+.borderLeft {
+    border-left: 3px solid black;
+}
+
+.totals {
+    margin-top: 5rem;
+}
+
+.col-md-2 {
+    width: 162px;
+}
+.col-md-4 {
+    width: 324px;
+}
+.col-md-8 {
+    width: 648px;
+}
+.col-md-10 {
+    width: 810px;
+}

@@ -29,9 +29,6 @@ namespace capstone.Models
         [Display(Name = "Project Number")]
         public string ProjectNumber { get; set; }
 
-        [Display(Name = "Work Day")]
-        public int WorkDay { get; set; }
-
         public double? SalesTax { get; set; }
 
         [Display(Name = "Sales Tax")]
@@ -49,12 +46,6 @@ namespace capstone.Models
         [Display(Name = "Labor Margin")]
         public double? LaborMargin { get; set; }
 
-        public int? TotalId { get; set; }
-
-        public int? WorkforceCalcId { get; set; }
-
-        public WorkforceCalc WorkforceCalc { get; set; }
-
         [DataType(DataType.Date)]
         [Display(Name = "Completion Date")]
         public DateTime? CompletionDate { get; set; }
@@ -63,6 +54,34 @@ namespace capstone.Models
         public bool? IsCompleted { get; set; }
 
         public int? TimeTrackerId { get; set; }
+
+        public int? EmployeePayRateId { get; set; }
+
+        public EmployeeTypePayRate EmployeeTypePayRate { get; set; }
+
+        [Display(Name = "Work Day")]
+        public int WorkDay { get; set; }
+
+        [Display(Name = "Working Days")]
+        public double? WorkingDays
+        {
+            get
+            {
+                return TotalManHours / WorkDay;
+            }
+        }
+
+        [Display(Name = "Managment Hours")]
+        public double? ManagmentHours { get; set; }
+
+        [Display(Name = "Managment Cost")]
+        public double? ManagmentCost { get; set; }
+
+        [Display(Name = "Labor Hours")]
+        public double? LaborHours { get; set; }
+
+        [Display(Name = "Labor Cost")]
+        public double? LaborCost { get; set; }
 
         [Display(Name = "Total Material Cost")]
         public double? TotalMaterialCost { get; set; }
@@ -144,6 +163,5 @@ namespace capstone.Models
 
         public virtual ICollection<LineItem> LineItems { get; set;}
 
-        public virtual ICollection<WorkforceCalc> WorkforceCalcs { get; set;}
     }
 }

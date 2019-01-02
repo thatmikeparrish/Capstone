@@ -45,8 +45,6 @@ namespace capstone.Controllers
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,
                     LaborMargin = p.LaborMargin,
-                    TotalId = p.TotalId,
-                    WorkforceCalcId = p.WorkforceCalcId,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,
@@ -85,8 +83,6 @@ namespace capstone.Controllers
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,
                     LaborMargin = p.LaborMargin,
-                    TotalId = p.TotalId,
-                    WorkforceCalcId = p.WorkforceCalcId,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,
@@ -136,7 +132,7 @@ namespace capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("ProjectId,UserId,ClientId,ProjectNumber,MarginsId,LineItemId,TotalId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
+        public async Task<IActionResult> Create([Bind("ProjectId,UserId,ClientId,ProjectNumber,LineItemId,SubmittedDate,ExpirationDate,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
         {
             var user = await GetCurrentUserAsync();
 
@@ -178,7 +174,7 @@ namespace capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,LineItemId,WorkforceId,CompletionDate,IsCompleted,TimeTrackerId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,SubmittedDate,ExpirationDate,IsCompleted,CompletionDate")] Project project)
         {
             if (id != project.ProjectId)
             {
@@ -273,8 +269,6 @@ namespace capstone.Controllers
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,
                     LaborMargin = p.LaborMargin,
-                    TotalId = p.TotalId,
-                    WorkforceCalcId = p.WorkforceCalcId,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,

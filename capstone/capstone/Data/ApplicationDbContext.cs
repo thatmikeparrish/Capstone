@@ -19,7 +19,6 @@ namespace capstone.Data
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
-        public DbSet<WorkforceCalc> WorkforceCalc { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,7 +50,6 @@ namespace capstone.Data
                 SalesTax = 9.75,
                 UnburdenedRate = 10,
                 LaborMargin = .1,
-                WorkforceCalcId = 1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
                 TimeTrackerId = 1
@@ -67,7 +65,6 @@ namespace capstone.Data
                 SalesTax = 9.75,
                 UnburdenedRate = 20,
                 LaborMargin = .2,
-                WorkforceCalcId = 2,
                 IsCompleted = false,
                 TimeTrackerId = 2
             };
@@ -227,20 +224,6 @@ namespace capstone.Data
                     EmployeeTypeId = 3,
                     UnburdenedPayRate = 12.50,
                     EmployeeQuantity = 1
-                }
-            );
-
-            modelBuilder.Entity<WorkforceCalc>().HasData(
-                new WorkforceCalc()
-                {
-                    WorkforceCalcId = 1,
-                    EmployeePayRateId = 1
-                },
-
-                new WorkforceCalc()
-                {
-                    WorkforceCalcId = 2,
-                    EmployeePayRateId = 2
                 }
             );
 
