@@ -25,13 +25,23 @@
                 <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SubmittedDate" class="control-label"></label>
+                <input asp-for="SubmittedDate" type="date" class="form-control" />
+                <span asp-validation-for="SubmittedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate" class="control-label"></label>
+                <input asp-for="ExpirationDate" type="date" class="form-control" />
+                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="IsCompleted" class="control-label"></label>
                 <input asp-for="IsCompleted" class="form-control" />
                 <span asp-validation-for="IsCompleted" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CompletionDate" class="control-label"></label>
-                <input asp-for="CompletionDate" class="form-control" />
+                <input asp-for="CompletionDate" type="date" class="form-control" />
                 <span asp-validation-for="CompletionDate" class="text-danger"></span>
             </div>
             <div class="form-group">

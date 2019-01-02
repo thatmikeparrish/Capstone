@@ -74,6 +74,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.UnburdenedRate)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubmittedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExpirationDate)
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -83,6 +89,12 @@
                 </td>
                 <td>
                     @String.Format("{0:c}", Model.UnburdenedRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.SubmittedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ExpirationDate)
                 </td>
             </tr>
         </tbody>

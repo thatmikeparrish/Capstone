@@ -13,7 +13,7 @@
         </div>
         <div class="submitDate col-md-4 text-center">
             <h1>Quote</h1>
-            <p>Submitted on: </p>
+            <p>Submitted on: @Html.DisplayFor(model => model.SubmittedDate)</p>
         </div>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
             <p>
                 <strong>Quote expires:</strong>
             </p>
-            <p></p>
+            <p>@Html.DisplayFor(model => model.ExpirationDate)</p>
         </div>
     </div>
     <div class="row borderBottom">

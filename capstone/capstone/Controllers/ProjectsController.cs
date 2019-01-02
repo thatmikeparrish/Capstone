@@ -79,6 +79,8 @@ namespace capstone.Controllers
                     Client = p.Client,
                     LineItems = p.LineItems,
                     ProjectNumber = p.ProjectNumber,
+                    SubmittedDate = p.SubmittedDate,
+                    ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,
@@ -176,6 +178,7 @@ namespace capstone.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,SubmittedDate,ExpirationDate,IsCompleted,CompletionDate")] Project project)
         {
+            var ProjectId = project.ProjectId;
             if (id != project.ProjectId)
             {
                 return NotFound();
@@ -185,7 +188,14 @@ namespace capstone.Controllers
             {
                 try
                 {
-                    _context.Update(project);
+                    var editProject = await _context.Project.FindAsync(id);
+                    editProject.ProjectNumber = project.ProjectNumber;
+                    editProject.ClientId = project.ClientId;
+                    editProject.SubmittedDate = project.SubmittedDate;
+                    editProject.ExpirationDate = project.ExpirationDate;
+                    editProject.IsCompleted = project.IsCompleted;
+                    editProject.CompletionDate = project.CompletionDate;
+                    _context.Update(editProject);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -199,7 +209,7 @@ namespace capstone.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Projects", new { id = ProjectId });
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FullName", project.ClientId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", project.UserId);
@@ -265,6 +275,8 @@ namespace capstone.Controllers
                     Client = p.Client,
                     LineItems = p.LineItems,
                     ProjectNumber = p.ProjectNumber,
+                    SubmittedDate = p.SubmittedDate,
+                    ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,

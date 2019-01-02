@@ -29,6 +29,14 @@ namespace capstone.Models
         [Display(Name = "Project Number")]
         public string ProjectNumber { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(Name = "Quote submitted")]
+        public DateTime? SubmittedDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Quote Expires")]
+        public DateTime? ExpirationDate { get; set; }
+
         public double? SalesTax { get; set; }
 
         [Display(Name = "Sales Tax")]
