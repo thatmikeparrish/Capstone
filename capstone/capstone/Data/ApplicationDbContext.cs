@@ -15,7 +15,7 @@ namespace capstone.Data
         public DbSet<Client> Client { get; set; }
         public DbSet<ClientType> ClientType { get; set; }
         public DbSet<EmployeeType> EmployeeType { get; set; }
-        public DbSet<EmployeeTypePayRate> EmployeeTypePayRate { get; set; }
+        public DbSet<Crew> Crew { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
@@ -46,9 +46,10 @@ namespace capstone.Data
                 UserId = user.Id,
                 ClientId = 1,
                 ProjectNumber = "17001",
+                SubmittedDate = DateTime.Parse("2017-01-15"),
+                ExpirationDate = DateTime.Parse("2017-02-15"),
                 WorkDay = 8,
                 SalesTax = 9.75,
-                UnburdenedRate = 10,
                 LaborMargin = .1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
@@ -63,7 +64,6 @@ namespace capstone.Data
                 ProjectNumber = "17002",
                 WorkDay = 8,
                 SalesTax = 9.75,
-                UnburdenedRate = 20,
                 LaborMargin = .2,
                 IsCompleted = false,
                 TimeTrackerId = 2
@@ -195,35 +195,51 @@ namespace capstone.Data
                 new EmployeeType()
                 {
                     EmployeeTypeId = 1,
-                    Category = "Lead Developer"
-                }, 
+                    Category = "Lead Developer (Management)"
+                },
                 new EmployeeType()
                 {
                     EmployeeTypeId = 2,
+                    Category = "Lead Developer (Labor)"
+                },
+                new EmployeeType()
+                {
+                    EmployeeTypeId = 3,
                     Category = "Senior Developer"
                 },
                 new EmployeeType()
                 {
-                    EmployeeTypeId = 3,
+                    EmployeeTypeId = 4,
                     Category = "Junior Developer"
                 }
             );
 
-            modelBuilder.Entity<EmployeeTypePayRate>().HasData(
-                new EmployeeTypePayRate()
+            modelBuilder.Entity<Crew>().HasData(
+                new Crew()
                 {
-                    EmployeeTypePayRateId = 1,
-                    EmployeeTypeId = 2,
-                    UnburdenedPayRate = 15,
+                    CrewId = 1,
+                    ProjectId = 1,
+                    EmployeeTypeId = 1,
+                    PayRate = 15,
                     EmployeeQuantity = 1
                 },
 
-                new EmployeeTypePayRate()
+                new Crew()
                 {
-                    EmployeeTypePayRateId = 2,
+                    CrewId = 2,
+                    ProjectId = 1,
+                    EmployeeTypeId = 2,
+                    PayRate = 15,
+                    EmployeeQuantity = 2
+                },
+
+                new Crew()
+                {
+                    CrewId = 3,
+                    ProjectId = 1,
                     EmployeeTypeId = 3,
-                    UnburdenedPayRate = 12.50,
-                    EmployeeQuantity = 1
+                    PayRate = 12.5,
+                    EmployeeQuantity = 2
                 }
             );
 

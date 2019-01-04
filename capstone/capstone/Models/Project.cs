@@ -49,7 +49,16 @@ namespace capstone.Models
         }
 
         [Display(Name = "Unburdened Rate")]
-        public double? UnburdenedRate { get; set; }
+        public double? UnburdenedRate
+        {
+            get
+            {
+                return (TotalCrewLaborCost + TotalCrewManagementCost) / TotalManHours;
+            }
+        }
+
+        [Display(Name = "Unburdened Rate")]
+        public double? CrewSize { get; set; }
 
         [Display(Name = "Labor Margin")]
         public double? LaborMargin { get; set; }
@@ -63,10 +72,6 @@ namespace capstone.Models
 
         public int? TimeTrackerId { get; set; }
 
-        public int? EmployeePayRateId { get; set; }
-
-        public EmployeeTypePayRate EmployeeTypePayRate { get; set; }
-
         [Display(Name = "Work Day")]
         public int WorkDay { get; set; }
 
@@ -75,21 +80,9 @@ namespace capstone.Models
         {
             get
             {
-                return TotalManHours / WorkDay;
+                return (TotalManHours / WorkDay) / CrewSize;
             }
         }
-
-        [Display(Name = "Managment Hours")]
-        public double? ManagmentHours { get; set; }
-
-        [Display(Name = "Managment Cost")]
-        public double? ManagmentCost { get; set; }
-
-        [Display(Name = "Labor Hours")]
-        public double? LaborHours { get; set; }
-
-        [Display(Name = "Labor Cost")]
-        public double? LaborCost { get; set; }
 
         [Display(Name = "Total Material Cost")]
         public double? TotalMaterialCost { get; set; }
@@ -123,6 +116,14 @@ namespace capstone.Models
 
         [Display(Name = "Total ManHours")]
         public double? TotalManHours { get; set; }
+
+        public double? TotalCrewLaborHours { get; set; }
+
+        public double? TotalCrewLaborCost { get; set; }
+
+        public double? TotalCrewManagementHours { get; set; }
+
+        public double? TotalCrewManagementCost { get; set; }
 
         [Display(Name = "Total Labor Cost")]
         public double? TotalLaborCost
@@ -171,5 +172,6 @@ namespace capstone.Models
 
         public virtual ICollection<LineItem> LineItems { get; set;}
 
+        public virtual ICollection<Crew> CrewMembers { get; set; }
     }
 }

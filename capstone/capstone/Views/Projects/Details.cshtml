@@ -5,16 +5,16 @@
 }
 
 <h2>Project Details</h2>
-<a asp-area="" asp-controller="Projects" asp-action="Quote" asp-route-id="@Model.Client.ClientId" class="btn btn-primary pull-right">View Quote</a>
 <br />
 
 <div>
     <h3>Project @Html.DisplayFor(model => model.ProjectNumber)</h3>
     <br />
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-primary">Edit</a>
-        &nbsp&nbsp&nbsp
         <a asp-action="Index" class="btn btn-default">Back</a>
+        &nbsp&nbsp&nbsp
+        <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-primary">Edit</a>
+        <a asp-area="" asp-controller="Projects" asp-action="Quote" asp-route-id="@Model.Client.ClientId" class="btn btn-primary pull-right">View Quote</a>
     </div>
     <hr />
     <h4>Client Contact</h4>
@@ -117,8 +117,87 @@
                     Expected @Html.DisplayFor(model => model.WorkDay) hours per day.
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.WorkingDays)
+                    @String.Format("{0:n2}", Model.WorkingDays)
+
                 </td>
+            </tr>
+        </tbody>
+    </table>
+    <a asp-controller="Crews" asp-action="Create" class="btn btn-success">Add Member</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Crew Size</th>
+                <th>Crew Type</th>
+                <th>Labor Hours</th>
+                <th>Management Hours</th>
+                <th>Pay Rate</th>
+                <th>Labor Cost</th>
+                <th>Management Cost</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Crew c in Model.CrewMembers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Model => c.EmployeeQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => c.EmployeeType.Category)
+                    </td>
+                    <td>
+                        @String.Format("{0:n2}", c.LaborHours)
+                    </td>
+                    <td>
+                        @String.Format("{0:n2}", c.ManagmentHours)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", c.PayRate)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", c.LaborCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", c.ManagmentCost)
+                    </td>
+                    <td>
+                        <a asp-controller="Crews" asp-action="Edit" asp-route-id="@c.CrewId" class="lineItembtn btn btn-primary">Edit</a>
+                        &nbsp&nbsp&nbsp
+                        <a asp-controller="Crews" asp-action="Delete" asp-route-id="@c.CrewId" class="lineItembtn btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th>Totals</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayFor(Model => Model.CrewSize)
+                </th>
+                <th></th>
+                <th>
+                    @String.Format("{0:n2}", Model.TotalCrewLaborHours)
+                </th>
+                <th>
+                    @String.Format("{0:n2}", Model.TotalCrewManagementHours)
+                </th>
+                <th></th>
+                <th>
+                    @String.Format("{0:c}", Model.TotalCrewLaborCost)
+                </th>
+                <th>
+                    @String.Format("{0:c}", Model.TotalCrewManagementCost)
+                </th>
+                <th></th>
             </tr>
         </tbody>
     </table>

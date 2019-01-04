@@ -1,4 +1,30 @@
-﻿::-webkit-scrollbar {
+﻿/* 
+Dark Blue
+    #1F464D
+    31 70 77
+
+Light Blue
+    #3C8C93
+    60 140 147
+
+Tan
+    #D9D7CA
+    217 215 202
+
+Light Brown
+    #73604F
+    115 96 79
+
+Dark Brown
+    #3B3535
+    59 53 53
+
+Fonts
+    font-family: 'Yellowtail', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+*/
+
+::-webkit-scrollbar {
     display: none;
 }
 
@@ -6,11 +32,13 @@
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-top: 50px;
+    padding-bottom: 1px;
     background-image: url(../images/background.jpg);
     background-position: center;
     background-size: cover;
     min-height: 100vh;
     height: 100%;
+    box-shadow: 0px 0px 5px 1000px rgba(60, 140, 147, .65) inset;
 }
 
 p {

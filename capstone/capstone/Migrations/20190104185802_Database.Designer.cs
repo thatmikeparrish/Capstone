@@ -10,7 +10,7 @@ using capstone.Data;
 namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190102224956_Database")]
+    [Migration("20190104185802_Database")]
     partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,39 @@ namespace capstone.Migrations
                     );
                 });
 
+            modelBuilder.Entity("capstone.Models.Crew", b =>
+                {
+                    b.Property<int>("CrewId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double?>("EmployeeQuantity");
+
+                    b.Property<int>("EmployeeTypeId");
+
+                    b.Property<double?>("LaborHours");
+
+                    b.Property<double?>("ManagmentHours");
+
+                    b.Property<double?>("PayRate");
+
+                    b.Property<int>("ProjectId");
+
+                    b.HasKey("CrewId");
+
+                    b.HasIndex("EmployeeTypeId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Crew");
+
+                    b.HasData(
+                        new { CrewId = 1, EmployeeQuantity = 1.0, EmployeeTypeId = 1, PayRate = 15.0, ProjectId = 1 },
+                        new { CrewId = 2, EmployeeQuantity = 2.0, EmployeeTypeId = 2, PayRate = 15.0, ProjectId = 1 },
+                        new { CrewId = 3, EmployeeQuantity = 2.0, EmployeeTypeId = 3, PayRate = 12.5, ProjectId = 1 }
+                    );
+                });
+
             modelBuilder.Entity("capstone.Models.EmployeeType", b =>
                 {
                     b.Property<int>("EmployeeTypeId")
@@ -116,33 +149,10 @@ namespace capstone.Migrations
                     b.ToTable("EmployeeType");
 
                     b.HasData(
-                        new { EmployeeTypeId = 1, Category = "Lead Developer" },
-                        new { EmployeeTypeId = 2, Category = "Senior Developer" },
-                        new { EmployeeTypeId = 3, Category = "Junior Developer" }
-                    );
-                });
-
-            modelBuilder.Entity("capstone.Models.EmployeeTypePayRate", b =>
-                {
-                    b.Property<int>("EmployeeTypePayRateId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("EmployeeQuantity");
-
-                    b.Property<int>("EmployeeTypeId");
-
-                    b.Property<double?>("UnburdenedPayRate");
-
-                    b.HasKey("EmployeeTypePayRateId");
-
-                    b.HasIndex("EmployeeTypeId");
-
-                    b.ToTable("EmployeeTypePayRate");
-
-                    b.HasData(
-                        new { EmployeeTypePayRateId = 1, EmployeeQuantity = 1, EmployeeTypeId = 2, UnburdenedPayRate = 15.0 },
-                        new { EmployeeTypePayRateId = 2, EmployeeQuantity = 1, EmployeeTypeId = 3, UnburdenedPayRate = 12.5 }
+                        new { EmployeeTypeId = 1, Category = "Lead Developer (Management)" },
+                        new { EmployeeTypeId = 2, Category = "Lead Developer (Labor)" },
+                        new { EmployeeTypeId = 3, Category = "Senior Developer" },
+                        new { EmployeeTypeId = 4, Category = "Junior Developer" }
                     );
                 });
 
@@ -191,23 +201,13 @@ namespace capstone.Migrations
 
                     b.Property<DateTime?>("CompletionDate");
 
-                    b.Property<int?>("EmployeePayRateId");
-
-                    b.Property<int?>("EmployeeTypePayRateId");
+                    b.Property<double?>("CrewSize");
 
                     b.Property<DateTime?>("ExpirationDate");
 
                     b.Property<bool?>("IsCompleted");
 
-                    b.Property<double?>("LaborCost");
-
-                    b.Property<double?>("LaborHours");
-
                     b.Property<double?>("LaborMargin");
-
-                    b.Property<double?>("ManagmentCost");
-
-                    b.Property<double?>("ManagmentHours");
 
                     b.Property<string>("ProjectNumber")
                         .IsRequired()
@@ -219,6 +219,14 @@ namespace capstone.Migrations
 
                     b.Property<int?>("TimeTrackerId");
 
+                    b.Property<double?>("TotalCrewLaborCost");
+
+                    b.Property<double?>("TotalCrewLaborHours");
+
+                    b.Property<double?>("TotalCrewManagementCost");
+
+                    b.Property<double?>("TotalCrewManagementHours");
+
                     b.Property<double?>("TotalManHours");
 
                     b.Property<double?>("TotalMaterialCost");
@@ -229,8 +237,6 @@ namespace capstone.Migrations
 
                     b.Property<double?>("TotalSubQuote");
 
-                    b.Property<double?>("UnburdenedRate");
-
                     b.Property<string>("UserId")
                         .IsRequired();
 
@@ -240,15 +246,13 @@ namespace capstone.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("EmployeeTypePayRateId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, TimeTrackerId = 1, UnburdenedRate = 10.0, UserId = "ca3e426a-5812-46e2-95ce-f13d6a59a07a", WorkDay = 8 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UnburdenedRate = 20.0, UserId = "ca3e426a-5812-46e2-95ce-f13d6a59a07a", WorkDay = 8 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, SubmittedDate = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), TimeTrackerId = 1, UserId = "c3175b13-315f-4349-89af-a32dffbceff4", WorkDay = 8 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UserId = "c3175b13-315f-4349-89af-a32dffbceff4", WorkDay = 8 }
                     );
                 });
 
@@ -276,8 +280,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "ca3e426a-5812-46e2-95ce-f13d6a59a07a" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "ca3e426a-5812-46e2-95ce-f13d6a59a07a" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "c3175b13-315f-4349-89af-a32dffbceff4" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "c3175b13-315f-4349-89af-a32dffbceff4" }
                     );
                 });
 
@@ -466,7 +470,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "ca3e426a-5812-46e2-95ce-f13d6a59a07a", AccessFailedCount = 0, ConcurrencyStamp = "c2d8bc20-c50a-4684-9bd5-e12077029ac3", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAECLvzBctEtfV+wUPXDFjdb7vPDTS6bfJG8Jpydsdm0sFwMJ4Nw026+uUyc3Lw25RFQ==", PhoneNumberConfirmed = false, SecurityStamp = "f67d424d-d615-4e55-ad3b-da8cf9eada37", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "c3175b13-315f-4349-89af-a32dffbceff4", AccessFailedCount = 0, ConcurrencyStamp = "5954637a-52fc-49be-b58b-dcc08a2c3a8b", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEJg7uc/JBKBkVchBNGzoIw1aJzp1IoyDt/v5nqi/b+iFrA+5HZMoulidoHyfHALYvA==", PhoneNumberConfirmed = false, SecurityStamp = "1cacd7eb-6219-4168-90d7-988ae1581ed2", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 
@@ -478,11 +482,16 @@ namespace capstone.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("capstone.Models.EmployeeTypePayRate", b =>
+            modelBuilder.Entity("capstone.Models.Crew", b =>
                 {
                     b.HasOne("capstone.Models.EmployeeType", "EmployeeType")
                         .WithMany()
                         .HasForeignKey("EmployeeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("capstone.Models.Project")
+                        .WithMany("CrewMembers")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -500,10 +509,6 @@ namespace capstone.Migrations
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("capstone.Models.EmployeeTypePayRate", "EmployeeTypePayRate")
-                        .WithMany()
-                        .HasForeignKey("EmployeeTypePayRateId");
 
                     b.HasOne("capstone.Models.ApplicationUser", "User")
                         .WithMany()
