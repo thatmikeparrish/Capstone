@@ -94,8 +94,6 @@ namespace capstone.Controllers
                     TotalSubCost = p.LineItems.Sum(m => m.SubCost),
                     TotalSubQuote = p.LineItems.Sum(m => m.SubQuote),
                     TotalManHours = p.LineItems.Sum(m => m.ManHours),
-                    TotalCrewLaborCost = p.CrewMembers.Sum(m => m.LaborCost),
-                    TotalCrewManagementCost = p.CrewMembers.Sum(m => m.ManagmentCost),
                 })
                 .FirstOrDefault();
 
@@ -125,6 +123,26 @@ namespace capstone.Controllers
                     EmployeeQuantity = c.EmployeeQuantity,
                     LaborHours = c.IsManagement ? 0 : c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays,
                     ManagmentHours = c.IsManagement ? c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays : 0,
+                }).ToList();
+
+                allProjects.TotalCrewLaborHours = allProjects.CrewMembers.Sum(m => m.LaborHours);
+                allProjects.TotalCrewLaborCost = allProjects.CrewMembers.Sum(m => m.LaborCost);
+                allProjects.TotalCrewManagementHours = allProjects.CrewMembers.Sum(m => m.ManagmentHours);
+                allProjects.TotalCrewManagementCost = allProjects.CrewMembers.Sum(m => m.ManagmentCost);
+
+                allProjects.LineItems = allProjects.LineItems
+                .Select(li => new LineItem
+                {
+                    LineItemId = li.LineItemId,
+                    ProjectId = li.ProjectId,
+                    Project = li.Project,
+                    Description = li.Description,
+                    MaterialCost = li.MaterialCost,
+                    SubCost = li.SubCost,
+                    ManHours = li.ManHours,
+                    LaborCost = li.ManHours * allProjects.UnburdenedRate,
+                    LaborQuote = (li.ManHours * allProjects.UnburdenedRate) * (1 + allProjects.LaborMargin),
+                    QuoteSalesTax = li.MaterialQuote * allProjects.ProjectSalesTax
                 }).ToList();
 
             if (allProjects == null)

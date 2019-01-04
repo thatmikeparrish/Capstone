@@ -19,6 +19,8 @@ namespace capstone.Models
         [Display(Name = "Employee Type")]
         public int EmployeeTypeId { get; set; }
 
+        public EmployeeType EmployeeType { get; set; }
+
         public bool IsManagement
         {
             get
@@ -33,8 +35,6 @@ namespace capstone.Models
                 }
             }
         }
-
-        public EmployeeType EmployeeType { get; set; }
 
         [Display(Name = "Pay Rate")]
         public double? PayRate { get; set; }

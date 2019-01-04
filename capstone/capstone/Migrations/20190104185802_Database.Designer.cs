@@ -10,7 +10,7 @@ using capstone.Data;
 namespace capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190104060635_Database")]
+    [Migration("20190104185802_Database")]
     partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,7 +221,11 @@ namespace capstone.Migrations
 
                     b.Property<double?>("TotalCrewLaborCost");
 
+                    b.Property<double?>("TotalCrewLaborHours");
+
                     b.Property<double?>("TotalCrewManagementCost");
+
+                    b.Property<double?>("TotalCrewManagementHours");
 
                     b.Property<double?>("TotalManHours");
 
@@ -247,8 +251,8 @@ namespace capstone.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, SubmittedDate = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), TimeTrackerId = 1, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", WorkDay = 8 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", WorkDay = 8 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, SubmittedDate = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), TimeTrackerId = 1, UserId = "c3175b13-315f-4349-89af-a32dffbceff4", WorkDay = 8 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UserId = "c3175b13-315f-4349-89af-a32dffbceff4", WorkDay = 8 }
                     );
                 });
 
@@ -276,8 +280,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "c3175b13-315f-4349-89af-a32dffbceff4" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "c3175b13-315f-4349-89af-a32dffbceff4" }
                     );
                 });
 
@@ -466,7 +470,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", AccessFailedCount = 0, ConcurrencyStamp = "61b27cd3-a629-4b5f-bb53-6d4b6f25845b", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAECVwhSd39Ry88GnMC5Ioo/Vv7IcHRSXSJecYr0d8dh0xUCHJ8j80E8omuLTTthXSXQ==", PhoneNumberConfirmed = false, SecurityStamp = "d687d966-3a6d-4556-a35f-fbe215149e1d", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "c3175b13-315f-4349-89af-a32dffbceff4", AccessFailedCount = 0, ConcurrencyStamp = "5954637a-52fc-49be-b58b-dcc08a2c3a8b", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEJg7uc/JBKBkVchBNGzoIw1aJzp1IoyDt/v5nqi/b+iFrA+5HZMoulidoHyfHALYvA==", PhoneNumberConfirmed = false, SecurityStamp = "1cacd7eb-6219-4168-90d7-988ae1581ed2", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 

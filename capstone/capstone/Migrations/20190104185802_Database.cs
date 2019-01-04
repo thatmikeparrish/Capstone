@@ -256,7 +256,9 @@ namespace capstone.Migrations
                     TotalSubCost = table.Column<double>(nullable: true),
                     TotalSubQuote = table.Column<double>(nullable: true),
                     TotalManHours = table.Column<double>(nullable: true),
+                    TotalCrewLaborHours = table.Column<double>(nullable: true),
                     TotalCrewLaborCost = table.Column<double>(nullable: true),
+                    TotalCrewManagementHours = table.Column<double>(nullable: true),
                     TotalCrewManagementCost = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
@@ -332,7 +334,7 @@ namespace capstone.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName" },
-                values: new object[] { "a10c365c-5997-49f1-aa2c-7e6a96d397a4", 0, "61b27cd3-a629-4b5f-bb53-6d4b6f25845b", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAECVwhSd39Ry88GnMC5Ioo/Vv7IcHRSXSJecYr0d8dh0xUCHJ8j80E8omuLTTthXSXQ==", null, false, "d687d966-3a6d-4556-a35f-fbe215149e1d", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
+                values: new object[] { "c3175b13-315f-4349-89af-a32dffbceff4", 0, "5954637a-52fc-49be-b58b-dcc08a2c3a8b", "ApplicationUser", "thatmikeparrish@gmail.com", true, false, null, "THATMIKEPARRISH@GMAIL.COM", "THATMIKEPARRISH@GMAIL.COM", "AQAAAAEAACcQAAAAEJg7uc/JBKBkVchBNGzoIw1aJzp1IoyDt/v5nqi/b+iFrA+5HZMoulidoHyfHALYvA==", null, false, "1cacd7eb-6219-4168-90d7-988ae1581ed2", false, "thatmikeparrish@gmail.com", "Mike", "Parrish" });
 
             migrationBuilder.InsertData(
                 table: "ClientType",
@@ -368,19 +370,19 @@ namespace capstone.Migrations
                 columns: new[] { "TimeTrackerId", "Comments", "Date", "Hours", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, "a10c365c-5997-49f1-aa2c-7e6a96d397a4" },
-                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6.0, "a10c365c-5997-49f1-aa2c-7e6a96d397a4" }
+                    { 1, "This went as expected.", new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.0, "c3175b13-315f-4349-89af-a32dffbceff4" },
+                    { 2, "I had an issue with Grunt.", new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 6.0, "c3175b13-315f-4349-89af-a32dffbceff4" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "CrewSize", "ExpirationDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "SubmittedDate", "TimeTrackerId", "TotalCrewLaborCost", "TotalCrewManagementCost", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UserId", "WorkDay" },
-                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 0.1, "17001", 9.75, new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, null, null, null, null, null, "a10c365c-5997-49f1-aa2c-7e6a96d397a4", 8 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "CrewSize", "ExpirationDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "SubmittedDate", "TimeTrackerId", "TotalCrewLaborCost", "TotalCrewLaborHours", "TotalCrewManagementCost", "TotalCrewManagementHours", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UserId", "WorkDay" },
+                values: new object[] { 1, 1, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), true, 0.1, "17001", 9.75, new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, null, null, null, null, null, null, null, "c3175b13-315f-4349-89af-a32dffbceff4", 8 });
 
             migrationBuilder.InsertData(
                 table: "Project",
-                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "CrewSize", "ExpirationDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "SubmittedDate", "TimeTrackerId", "TotalCrewLaborCost", "TotalCrewManagementCost", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UserId", "WorkDay" },
-                values: new object[] { 2, 2, null, null, null, false, 0.2, "17002", 9.75, null, 2, null, null, null, null, null, null, null, "a10c365c-5997-49f1-aa2c-7e6a96d397a4", 8 });
+                columns: new[] { "ProjectId", "ClientId", "CompletionDate", "CrewSize", "ExpirationDate", "IsCompleted", "LaborMargin", "ProjectNumber", "SalesTax", "SubmittedDate", "TimeTrackerId", "TotalCrewLaborCost", "TotalCrewLaborHours", "TotalCrewManagementCost", "TotalCrewManagementHours", "TotalManHours", "TotalMaterialCost", "TotalMaterialQuote", "TotalSubCost", "TotalSubQuote", "UserId", "WorkDay" },
+                values: new object[] { 2, 2, null, null, null, false, 0.2, "17002", 9.75, null, 2, null, null, null, null, null, null, null, null, null, "c3175b13-315f-4349-89af-a32dffbceff4", 8 });
 
             migrationBuilder.InsertData(
                 table: "Crew",

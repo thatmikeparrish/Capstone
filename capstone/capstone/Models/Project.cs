@@ -117,7 +117,11 @@ namespace capstone.Models
         [Display(Name = "Total ManHours")]
         public double? TotalManHours { get; set; }
 
+        public double? TotalCrewLaborHours { get; set; }
+
         public double? TotalCrewLaborCost { get; set; }
+
+        public double? TotalCrewManagementHours { get; set; }
 
         public double? TotalCrewManagementCost { get; set; }
 
