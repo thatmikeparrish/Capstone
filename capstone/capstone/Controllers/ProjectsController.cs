@@ -86,6 +86,7 @@ namespace capstone.Controllers
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
                     UnburdenedRate = p.UnburdenedRate,
+                    CrewSize = p.CrewMembers.Sum(m => m.EmployeeQuantity),
                     LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
@@ -111,6 +112,18 @@ namespace capstone.Controllers
                     LaborCost = li.ManHours * allProjects.UnburdenedRate,
                     LaborQuote = (li.ManHours * allProjects.UnburdenedRate) * (1 + allProjects.LaborMargin),
                     QuoteSalesTax = li.MaterialQuote * allProjects.ProjectSalesTax
+                }).ToList();
+
+                allProjects.CrewMembers = allProjects.CrewMembers
+                .Select(c => new Crew
+                {
+                    CrewId = c.CrewId,
+                    ProjectId = c.ProjectId,
+                    EmployeeTypeId = c.EmployeeTypeId,
+                    EmployeeType = c.EmployeeType,
+                    PayRate = c.PayRate,
+                    EmployeeQuantity = c.EmployeeQuantity,
+                    LaborHours = c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays,
                 }).ToList();
 
             if (allProjects == null)

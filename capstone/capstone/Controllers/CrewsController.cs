@@ -24,11 +24,15 @@ namespace capstone.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var allCrews = _context.Crew.Include("EmployeeType").ToList().Select(c => new Crew
+            var allCrews = _context.Crew
+                .Include("EmployeeType")
+                .ToList()
+                .Select(c => new Crew
             {
                 CrewId = c.CrewId,
                 ProjectId = c.ProjectId,
                 EmployeeTypeId = c.EmployeeTypeId,
+                EmployeeType = c.EmployeeType,
                 PayRate = c.PayRate,
                 EmployeeQuantity = c.EmployeeQuantity
             });

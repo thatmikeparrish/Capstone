@@ -144,15 +144,24 @@
                     @Html.DisplayFor(Model => c.EmployeeQuantity)
                 </td>
                 <td>
-                    @Html.DisplayFor(Model => c.EmployeeTitle)
+                    @Html.DisplayFor(Model => c.EmployeeTypeId)
+                    @Html.DisplayFor(Model => c.EmployeeType.Category)
                 </td>
-                <td></td>
-                <td></td>
+                <td>
+                    @Html.DisplayFor(Model => c.LaborHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => c.ManagmentHours)
+                </td>
                 <td>
                     @String.Format("{0:c}", c.PayRate)
                 </td>
-                <td></td>
-                <td></td>
+                <td>
+                    @String.Format("{0:c}", c.LaborCost)
+                </td>
+                <td>
+                    @String.Format("{0:c}", c.ManagmentCost)
+                </td>
                 <td>
                     <a asp-controller="Crews" asp-action="Edit" asp-route-id="@c.CrewId" class="lineItembtn btn btn-primary">Edit</a>
                     &nbsp&nbsp&nbsp

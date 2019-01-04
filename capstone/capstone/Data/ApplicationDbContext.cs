@@ -46,6 +46,8 @@ namespace capstone.Data
                 UserId = user.Id,
                 ClientId = 1,
                 ProjectNumber = "17001",
+                SubmittedDate = DateTime.Parse("2017-01-15"),
+                ExpirationDate = DateTime.Parse("2017-02-15"),
                 WorkDay = 8,
                 SalesTax = 9.75,
                 UnburdenedRate = 10,
@@ -209,25 +211,25 @@ namespace capstone.Data
                 }
             );
 
-            //modelBuilder.Entity<Crew>().HasData(
-            //    new Crew()
-            //    {
-            //        CrewId = 1,
-            //        ProjectId = 1,
-            //        EmployeeTypeId = 1,
-            //        PayRate = 15,
-            //        EmployeeQuantity = 1
-            //    },
+            modelBuilder.Entity<Crew>().HasData(
+                new Crew()
+                {
+                    CrewId = 1,
+                    ProjectId = 1,
+                    EmployeeTypeId = 1,
+                    PayRate = 15,
+                    EmployeeQuantity = 1
+                },
 
-            //    new Crew()
-            //    {
-            //        CrewId = 1,
-            //        ProjectId = 1,
-            //        EmployeeTypeId = 2,
-            //        PayRate = 12.50,
-            //        EmployeeQuantity = 2
-            //    }
-            //);
+                new Crew()
+                {
+                    CrewId = 2,
+                    ProjectId = 1,
+                    EmployeeTypeId = 2,
+                    PayRate = 12.50,
+                    EmployeeQuantity = 2
+                }
+            );
 
             modelBuilder.Entity<TimeTracker>().HasData(
                 new TimeTracker()

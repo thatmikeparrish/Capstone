@@ -21,18 +21,22 @@ namespace capstone.Models
 
         public EmployeeType EmployeeType { get; set; }
 
-        public string EmployeeTitle
-        {
-            get
-            {
-                return EmployeeType.Category;
-            }
-        }
-
         [Display(Name = "Pay Rate")]
         public double? PayRate { get; set; }
 
         [Display(Name = "Quantity")]
         public double? EmployeeQuantity { get; set; }
+
+        [Display(Name = "Managment Hours")]
+        public double? ManagmentHours { get; set; }
+
+        [Display(Name = "Managment Cost")]
+        public double? ManagmentCost { get; set; }
+
+        [Display(Name = "Labor Hours")]
+        public double? LaborHours { get; set; }
+
+        [Display(Name = "Labor Cost")]
+        public double? LaborCost { get; set; }
     }
 }
