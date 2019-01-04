@@ -63,10 +63,6 @@ namespace capstone.Models
 
         public int? TimeTrackerId { get; set; }
 
-        public int? EmployeePayRateId { get; set; }
-
-        public EmployeeTypePayRate EmployeeTypePayRate { get; set; }
-
         [Display(Name = "Work Day")]
         public int WorkDay { get; set; }
 
@@ -171,5 +167,6 @@ namespace capstone.Models
 
         public virtual ICollection<LineItem> LineItems { get; set;}
 
+        public virtual ICollection<Crew> CrewMembers { get; set; }
     }
 }

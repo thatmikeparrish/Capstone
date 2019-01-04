@@ -15,7 +15,7 @@ namespace capstone.Data
         public DbSet<Client> Client { get; set; }
         public DbSet<ClientType> ClientType { get; set; }
         public DbSet<EmployeeType> EmployeeType { get; set; }
-        public DbSet<EmployeeTypePayRate> EmployeeTypePayRate { get; set; }
+        public DbSet<Crew> Crew { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<TimeTracker> TimeTracker { get; set; }
@@ -209,23 +209,25 @@ namespace capstone.Data
                 }
             );
 
-            modelBuilder.Entity<EmployeeTypePayRate>().HasData(
-                new EmployeeTypePayRate()
-                {
-                    EmployeeTypePayRateId = 1,
-                    EmployeeTypeId = 2,
-                    UnburdenedPayRate = 15,
-                    EmployeeQuantity = 1
-                },
+            //modelBuilder.Entity<Crew>().HasData(
+            //    new Crew()
+            //    {
+            //        CrewId = 1,
+            //        ProjectId = 1,
+            //        EmployeeTypeId = 1,
+            //        PayRate = 15,
+            //        EmployeeQuantity = 1
+            //    },
 
-                new EmployeeTypePayRate()
-                {
-                    EmployeeTypePayRateId = 2,
-                    EmployeeTypeId = 3,
-                    UnburdenedPayRate = 12.50,
-                    EmployeeQuantity = 1
-                }
-            );
+            //    new Crew()
+            //    {
+            //        CrewId = 1,
+            //        ProjectId = 1,
+            //        EmployeeTypeId = 2,
+            //        PayRate = 12.50,
+            //        EmployeeQuantity = 2
+            //    }
+            //);
 
             modelBuilder.Entity<TimeTracker>().HasData(
                 new TimeTracker()

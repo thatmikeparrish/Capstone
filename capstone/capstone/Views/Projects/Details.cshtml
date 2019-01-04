@@ -122,6 +122,46 @@
             </tr>
         </tbody>
     </table>
+    <a asp-controller="Crews" asp-action="Create" class="btn btn-success">Add Member</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Crew Size</th>
+                <th>Crew Type</th>
+                <th>Labor Hours</th>
+                <th>Management Hours</th>
+                <th>Pay Rate</th>
+                <th>Labor Cost</th>
+                <th>Management Cost</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Crew c in Model.CrewMembers)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => c.EmployeeQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => c.EmployeeTitle)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @String.Format("{0:c}", c.PayRate)
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a asp-controller="Crews" asp-action="Edit" asp-route-id="@c.CrewId" class="lineItembtn btn btn-primary">Edit</a>
+                    &nbsp&nbsp&nbsp
+                    <a asp-controller="Crews" asp-action="Delete" asp-route-id="@c.CrewId" class="lineItembtn btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
     <h4>Totals</h4>
     <table class="table">
         <thead>

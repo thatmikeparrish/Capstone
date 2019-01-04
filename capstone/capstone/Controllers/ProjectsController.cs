@@ -70,6 +70,7 @@ namespace capstone.Controllers
             var allProjects = _context.Project
                 .Include("Client")
                 .Include(p => p.LineItems)
+                .Include(p => p.CrewMembers)
                 .Where(m => m.ProjectId == id).
                 Select(p => new Project
                 {
@@ -78,6 +79,7 @@ namespace capstone.Controllers
                     ClientId = p.ClientId,
                     Client = p.Client,
                     LineItems = p.LineItems,
+                    CrewMembers = p.CrewMembers,
                     ProjectNumber = p.ProjectNumber,
                     SubmittedDate = p.SubmittedDate,
                     ExpirationDate = p.ExpirationDate,

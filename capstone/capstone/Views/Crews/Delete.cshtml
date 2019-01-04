@@ -1,4 +1,4 @@
-﻿@model capstone.Models.EmployeeTypePayRate
+﻿@model capstone.Models.Crew
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,20 +8,20 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>EmployeeTypePayRate</h4>
+    <h4>Crew</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.EmployeeType)
+            @Html.DisplayNameFor(model => model.EmployeeTypeId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.EmployeeType.Category)
+            @Html.DisplayFor(model => model.EmployeeTypeId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UnburdenedPayRate)
+            @Html.DisplayNameFor(model => model.PayRate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UnburdenedPayRate)
+            @Html.DisplayFor(model => model.PayRate)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.EmployeeQuantity)
@@ -32,7 +32,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="EmployeeTypePayRateId" />
+        <input type="hidden" asp-for="CrewId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
