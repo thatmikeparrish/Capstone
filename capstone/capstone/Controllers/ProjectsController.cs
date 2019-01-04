@@ -68,10 +68,12 @@ namespace capstone.Controllers
 
             var allProjects = _context.Project
                 .Include("Client")
-                .Include(p => p.LineItems)
                 .Include(p => p.CrewMembers)
-                .Where(m => m.ProjectId == id).
-                Select(p => new Project
+                .ThenInclude(c => c.EmployeeType)
+                .Include(p => p.LineItems)
+                .Where(m => m.ProjectId == id)
+                .ToList()
+                .Select(p => new Project
                 {
                     ProjectId = p.ProjectId,
                     UserId = p.UserId,

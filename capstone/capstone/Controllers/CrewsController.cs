@@ -25,7 +25,7 @@ namespace capstone.Controllers
         public IActionResult Index()
         {
             var allCrews = _context.Crew
-                .Include("EmployeeType")
+                .Include(m => m.EmployeeType)
                 .ToList()
                 .Select(c => new Crew
             {
