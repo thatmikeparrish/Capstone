@@ -117,7 +117,8 @@
                     Expected @Html.DisplayFor(model => model.WorkDay) hours per day.
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.WorkingDays)
+                    @String.Format("{0:n2}", Model.WorkingDays)
+
                 </td>
             </tr>
         </tbody>
@@ -148,10 +149,10 @@
                     @Html.DisplayFor(Model => c.EmployeeType.Category)
                 </td>
                 <td>
-                    @Html.DisplayFor(Model => c.LaborHours)
+                    @String.Format("{0:n2}", c.LaborHours)
                 </td>
                 <td>
-                    @Html.DisplayFor(Model => c.ManagmentHours)
+                    @String.Format("{0:n2}", c.ManagmentHours)
                 </td>
                 <td>
                     @String.Format("{0:c}", c.PayRate)

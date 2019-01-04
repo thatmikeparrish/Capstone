@@ -49,7 +49,13 @@ namespace capstone.Models
         }
 
         [Display(Name = "Unburdened Rate")]
-        public double? UnburdenedRate { get; set; }
+        public double? UnburdenedRate
+        {
+            get
+            {
+                return (TotalCrewLaborCost + TotalCrewManagementCost) / TotalManHours;
+            }
+        }
 
         [Display(Name = "Unburdened Rate")]
         public double? CrewSize { get; set; }
@@ -110,6 +116,10 @@ namespace capstone.Models
 
         [Display(Name = "Total ManHours")]
         public double? TotalManHours { get; set; }
+
+        public double? TotalCrewLaborCost { get; set; }
+
+        public double? TotalCrewManagementCost { get; set; }
 
         [Display(Name = "Total Labor Cost")]
         public double? TotalLaborCost

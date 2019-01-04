@@ -19,6 +19,21 @@ namespace capstone.Models
         [Display(Name = "Employee Type")]
         public int EmployeeTypeId { get; set; }
 
+        public bool IsManagement
+        {
+            get
+            {
+                if (EmployeeTypeId == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public EmployeeType EmployeeType { get; set; }
 
         [Display(Name = "Pay Rate")]
@@ -31,12 +46,38 @@ namespace capstone.Models
         public double? ManagmentHours { get; set; }
 
         [Display(Name = "Managment Cost")]
-        public double? ManagmentCost { get; set; }
+        public double? ManagmentCost
+        {
+            get
+            {
+                if (EmployeeTypeId == 1)
+                {
+                    return ManagmentHours * PayRate;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
 
         [Display(Name = "Labor Hours")]
         public double? LaborHours { get; set; }
 
         [Display(Name = "Labor Cost")]
-        public double? LaborCost { get; set; }
+        public double? LaborCost
+        {
+            get
+            {
+                if (EmployeeTypeId != 1)
+                {
+                    return LaborHours * PayRate;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }

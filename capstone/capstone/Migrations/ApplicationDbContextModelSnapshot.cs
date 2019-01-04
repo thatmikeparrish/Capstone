@@ -109,11 +109,7 @@ namespace capstone.Migrations
 
                     b.Property<int>("EmployeeTypeId");
 
-                    b.Property<double?>("LaborCost");
-
                     b.Property<double?>("LaborHours");
-
-                    b.Property<double?>("ManagmentCost");
 
                     b.Property<double?>("ManagmentHours");
 
@@ -131,7 +127,8 @@ namespace capstone.Migrations
 
                     b.HasData(
                         new { CrewId = 1, EmployeeQuantity = 1.0, EmployeeTypeId = 1, PayRate = 15.0, ProjectId = 1 },
-                        new { CrewId = 2, EmployeeQuantity = 2.0, EmployeeTypeId = 2, PayRate = 12.5, ProjectId = 1 }
+                        new { CrewId = 2, EmployeeQuantity = 2.0, EmployeeTypeId = 2, PayRate = 15.0, ProjectId = 1 },
+                        new { CrewId = 3, EmployeeQuantity = 2.0, EmployeeTypeId = 3, PayRate = 12.5, ProjectId = 1 }
                     );
                 });
 
@@ -150,9 +147,10 @@ namespace capstone.Migrations
                     b.ToTable("EmployeeType");
 
                     b.HasData(
-                        new { EmployeeTypeId = 1, Category = "Lead Developer" },
-                        new { EmployeeTypeId = 2, Category = "Senior Developer" },
-                        new { EmployeeTypeId = 3, Category = "Junior Developer" }
+                        new { EmployeeTypeId = 1, Category = "Lead Developer (Management)" },
+                        new { EmployeeTypeId = 2, Category = "Lead Developer (Labor)" },
+                        new { EmployeeTypeId = 3, Category = "Senior Developer" },
+                        new { EmployeeTypeId = 4, Category = "Junior Developer" }
                     );
                 });
 
@@ -219,6 +217,10 @@ namespace capstone.Migrations
 
                     b.Property<int?>("TimeTrackerId");
 
+                    b.Property<double?>("TotalCrewLaborCost");
+
+                    b.Property<double?>("TotalCrewManagementCost");
+
                     b.Property<double?>("TotalManHours");
 
                     b.Property<double?>("TotalMaterialCost");
@@ -229,14 +231,10 @@ namespace capstone.Migrations
 
                     b.Property<double?>("TotalSubQuote");
 
-                    b.Property<double?>("UnburdenedRate");
-
                     b.Property<string>("UserId")
                         .IsRequired();
 
                     b.Property<int>("WorkDay");
-
-                    b.Property<double?>("WorkingDays");
 
                     b.HasKey("ProjectId");
 
@@ -247,8 +245,8 @@ namespace capstone.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, SubmittedDate = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), TimeTrackerId = 1, UnburdenedRate = 10.0, UserId = "706d1895-c3e0-498e-a69f-70b4733e7811", WorkDay = 8 },
-                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UnburdenedRate = 20.0, UserId = "706d1895-c3e0-498e-a69f-70b4733e7811", WorkDay = 8 }
+                        new { ProjectId = 1, ClientId = 1, CompletionDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), ExpirationDate = new DateTime(2017, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), IsCompleted = true, LaborMargin = 0.1, ProjectNumber = "17001", SalesTax = 9.75, SubmittedDate = new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), TimeTrackerId = 1, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", WorkDay = 8 },
+                        new { ProjectId = 2, ClientId = 2, IsCompleted = false, LaborMargin = 0.2, ProjectNumber = "17002", SalesTax = 9.75, TimeTrackerId = 2, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", WorkDay = 8 }
                     );
                 });
 
@@ -276,8 +274,8 @@ namespace capstone.Migrations
                     b.ToTable("TimeTracker");
 
                     b.HasData(
-                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "706d1895-c3e0-498e-a69f-70b4733e7811" },
-                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "706d1895-c3e0-498e-a69f-70b4733e7811" }
+                        new { TimeTrackerId = 1, Comments = "This went as expected.", Date = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 2.0, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4" },
+                        new { TimeTrackerId = 2, Comments = "I had an issue with Grunt.", Date = new DateTime(2017, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Hours = 6.0, UserId = "a10c365c-5997-49f1-aa2c-7e6a96d397a4" }
                     );
                 });
 
@@ -466,7 +464,7 @@ namespace capstone.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "706d1895-c3e0-498e-a69f-70b4733e7811", AccessFailedCount = 0, ConcurrencyStamp = "096ee27c-4dd7-4582-a2a4-a02c304d42ec", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAENOlher0loH6c1mIj97bWJ2z2jhiTwwFtoRaJ30AzbMmZk1QFUtNosnFKmf9tIHnKA==", PhoneNumberConfirmed = false, SecurityStamp = "f318080e-8f96-4d62-b49d-e277e3fa45fc", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
+                        new { Id = "a10c365c-5997-49f1-aa2c-7e6a96d397a4", AccessFailedCount = 0, ConcurrencyStamp = "61b27cd3-a629-4b5f-bb53-6d4b6f25845b", Email = "thatmikeparrish@gmail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "THATMIKEPARRISH@GMAIL.COM", NormalizedUserName = "THATMIKEPARRISH@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAECVwhSd39Ry88GnMC5Ioo/Vv7IcHRSXSJecYr0d8dh0xUCHJ8j80E8omuLTTthXSXQ==", PhoneNumberConfirmed = false, SecurityStamp = "d687d966-3a6d-4556-a35f-fbe215149e1d", TwoFactorEnabled = false, UserName = "thatmikeparrish@gmail.com", FirstName = "Mike", LastName = "Parrish" }
                     );
                 });
 

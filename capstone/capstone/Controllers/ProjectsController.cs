@@ -43,7 +43,6 @@ namespace capstone.Controllers
                     ProjectNumber = p.ProjectNumber,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
-                    UnburdenedRate = p.UnburdenedRate,
                     LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
@@ -85,7 +84,6 @@ namespace capstone.Controllers
                     ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
-                    UnburdenedRate = p.UnburdenedRate,
                     CrewSize = p.CrewMembers.Sum(m => m.EmployeeQuantity),
                     LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
@@ -96,6 +94,8 @@ namespace capstone.Controllers
                     TotalSubCost = p.LineItems.Sum(m => m.SubCost),
                     TotalSubQuote = p.LineItems.Sum(m => m.SubQuote),
                     TotalManHours = p.LineItems.Sum(m => m.ManHours),
+                    TotalCrewLaborCost = p.CrewMembers.Sum(m => m.LaborCost),
+                    TotalCrewManagementCost = p.CrewMembers.Sum(m => m.ManagmentCost),
                 })
                 .FirstOrDefault();
 
@@ -123,7 +123,8 @@ namespace capstone.Controllers
                     EmployeeType = c.EmployeeType,
                     PayRate = c.PayRate,
                     EmployeeQuantity = c.EmployeeQuantity,
-                    LaborHours = c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays,
+                    LaborHours = c.IsManagement ? 0 : c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays,
+                    ManagmentHours = c.IsManagement ? c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays : 0,
                 }).ToList();
 
             if (allProjects == null)
@@ -294,7 +295,6 @@ namespace capstone.Controllers
                     ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
-                    UnburdenedRate = p.UnburdenedRate,
                     LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,

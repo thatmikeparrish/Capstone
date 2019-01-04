@@ -50,7 +50,6 @@ namespace capstone.Data
                 ExpirationDate = DateTime.Parse("2017-02-15"),
                 WorkDay = 8,
                 SalesTax = 9.75,
-                UnburdenedRate = 10,
                 LaborMargin = .1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
@@ -65,7 +64,6 @@ namespace capstone.Data
                 ProjectNumber = "17002",
                 WorkDay = 8,
                 SalesTax = 9.75,
-                UnburdenedRate = 20,
                 LaborMargin = .2,
                 IsCompleted = false,
                 TimeTrackerId = 2
@@ -197,16 +195,21 @@ namespace capstone.Data
                 new EmployeeType()
                 {
                     EmployeeTypeId = 1,
-                    Category = "Lead Developer"
-                }, 
+                    Category = "Lead Developer (Management)"
+                },
                 new EmployeeType()
                 {
                     EmployeeTypeId = 2,
-                    Category = "Senior Developer"
+                    Category = "Lead Developer (Labor)"
                 },
                 new EmployeeType()
                 {
                     EmployeeTypeId = 3,
+                    Category = "Senior Developer"
+                },
+                new EmployeeType()
+                {
+                    EmployeeTypeId = 4,
                     Category = "Junior Developer"
                 }
             );
@@ -226,7 +229,16 @@ namespace capstone.Data
                     CrewId = 2,
                     ProjectId = 1,
                     EmployeeTypeId = 2,
-                    PayRate = 12.50,
+                    PayRate = 15,
+                    EmployeeQuantity = 2
+                },
+
+                new Crew()
+                {
+                    CrewId = 3,
+                    ProjectId = 1,
+                    EmployeeTypeId = 3,
+                    PayRate = 12.5,
                     EmployeeQuantity = 2
                 }
             );
