@@ -66,7 +66,7 @@ using capstone.Models;
             WriteLiteral("\r\n<h2>Index</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(118, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff47ebbf5d454492b57c248226c4ddd7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33cff1256fd540d5af95e13e240e9bf1", async() => {
                 BeginContext(141, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -336,7 +336,7 @@ using capstone.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(2736, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "537659526dc94f53a63a44ff16e30d20", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "051bf382cc92469e96a9990e4924389d", async() => {
                 BeginContext(2789, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -371,7 +371,7 @@ using capstone.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2817, 67, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b27ae2d89a19462dbce1b7d3f679760a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6f30d60b0c6441a89d6d8f09314c98fa", async() => {
                 BeginContext(2873, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -406,7 +406,7 @@ using capstone.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2904, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37cbb3a2dabc4fbd99da9703ca8fb819", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c026dd024c546c4b143aded09d53a39", async() => {
                 BeginContext(2959, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

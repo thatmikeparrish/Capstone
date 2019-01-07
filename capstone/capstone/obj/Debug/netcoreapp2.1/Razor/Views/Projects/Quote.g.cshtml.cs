@@ -65,7 +65,7 @@ using capstone.Models;
             WriteLiteral("\r\n<div class=\"quote\">\r\n    <div class=\"row topRow\">\r\n        <div class=\"col-md-8\">\r\n            ");
             EndContext();
             BeginContext(172, 85, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a994469c10f9411cbe61dc4c8317a6d8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0f6843f976dd48faa4243f19ae45b006", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

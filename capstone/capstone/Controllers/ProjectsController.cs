@@ -301,20 +301,25 @@ namespace capstone.Controllers
 
             var allProjects = _context.Project
                 .Include("Client")
+                .Include(p => p.CrewMembers)
+                .ThenInclude(c => c.EmployeeType)
                 .Include(p => p.LineItems)
-                .Where(m => m.ProjectId == id).
-                Select(p => new Project
+                .Where(m => m.ProjectId == id)
+                .ToList()
+                .Select(p => new Project
                 {
                     ProjectId = p.ProjectId,
                     UserId = p.UserId,
                     ClientId = p.ClientId,
                     Client = p.Client,
                     LineItems = p.LineItems,
+                    CrewMembers = p.CrewMembers,
                     ProjectNumber = p.ProjectNumber,
                     SubmittedDate = p.SubmittedDate,
                     ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
+                    CrewSize = p.CrewMembers.Sum(m => m.EmployeeQuantity),
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,
@@ -325,6 +330,39 @@ namespace capstone.Controllers
                     TotalManHours = p.LineItems.Sum(m => m.ManHours),
                 })
                 .FirstOrDefault();
+
+            allProjects.LineItems = allProjects.LineItems
+            .Select(li => new LineItem
+            {
+                LineItemId = li.LineItemId,
+                ProjectId = li.ProjectId,
+                Project = li.Project,
+                Description = li.Description,
+                MaterialCost = li.MaterialCost,
+                SubCost = li.SubCost,
+                ManHours = li.ManHours,
+                LaborCost = li.ManHours * allProjects.UnburdenedRate,
+                LaborQuote = (li.ManHours * allProjects.UnburdenedRate) * (1 + allProjects.LaborMargin),
+                QuoteSalesTax = li.MaterialQuote * allProjects.ProjectSalesTax
+            }).ToList();
+
+            allProjects.CrewMembers = allProjects.CrewMembers
+            .Select(c => new Crew
+            {
+                CrewId = c.CrewId,
+                ProjectId = c.ProjectId,
+                EmployeeTypeId = c.EmployeeTypeId,
+                EmployeeType = c.EmployeeType,
+                PayRate = c.PayRate,
+                EmployeeQuantity = c.EmployeeQuantity,
+                LaborHours = c.IsManagement ? 0 : c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays,
+                ManagmentHours = c.IsManagement ? c.EmployeeQuantity * allProjects.WorkDay * allProjects.WorkingDays : 0,
+            }).ToList();
+
+            allProjects.TotalCrewLaborHours = allProjects.CrewMembers.Sum(m => m.LaborHours);
+            allProjects.TotalCrewLaborCost = allProjects.CrewMembers.Sum(m => m.LaborCost);
+            allProjects.TotalCrewManagementHours = allProjects.CrewMembers.Sum(m => m.ManagmentHours);
+            allProjects.TotalCrewManagementCost = allProjects.CrewMembers.Sum(m => m.ManagmentCost);
 
             allProjects.LineItems = allProjects.LineItems
             .Select(li => new LineItem

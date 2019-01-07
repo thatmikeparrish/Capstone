@@ -68,7 +68,7 @@ using capstone.Models;
             WriteLiteral("\r\n<h2>Clients</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(118, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd590ef9f9374321a7e8bcb754615d75", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8121e18988f049bca16f88d7e17219b0", async() => {
                 BeginContext(165, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -189,7 +189,7 @@ using capstone.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(1322, 209, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c0888a00af9b4c3e8f8763878d2f7051", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79590d081ebc49dc95264d602fa87a6e", async() => {
                 BeginContext(1438, 44, false);
 #line 51 "C:\Users\mparr\Workspace\serverSide\Capstone\capstone\capstone\Views\Clients\Index.cshtml"
                                                                                                                               Write(Html.DisplayFor(modelItem => item.FirstName));
