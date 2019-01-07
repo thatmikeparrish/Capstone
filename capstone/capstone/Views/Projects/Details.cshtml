@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Client.FirstName)
+                    Client
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Client.PhoneNumber)
@@ -75,6 +75,9 @@
                     @Html.DisplayNameFor(model => model.UnburdenedRate)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.LaborMargin)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.SubmittedDate)
                 </th>
                 <th>
@@ -89,6 +92,9 @@
                 </td>
                 <td>
                     @String.Format("{0:c}", Model.UnburdenedRate)
+                </td>
+                <td>
+                    @String.Format("{0:P0}", Model.LaborMargin)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.SubmittedDate)

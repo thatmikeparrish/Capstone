@@ -50,7 +50,6 @@ namespace capstone.Data
                 ExpirationDate = DateTime.Parse("2017-02-15"),
                 WorkDay = 8,
                 SalesTax = 9.75,
-                LaborMargin = .1,
                 CompletionDate = DateTime.Parse("2017-11-15"),
                 IsCompleted = true,
                 TimeTrackerId = 1
@@ -64,7 +63,6 @@ namespace capstone.Data
                 ProjectNumber = "17002",
                 WorkDay = 8,
                 SalesTax = 9.75,
-                LaborMargin = .2,
                 IsCompleted = false,
                 TimeTrackerId = 2
             };

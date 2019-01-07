@@ -43,7 +43,6 @@ namespace capstone.Controllers
                     ProjectNumber = p.ProjectNumber,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
-                    LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,
@@ -87,7 +86,6 @@ namespace capstone.Controllers
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
                     CrewSize = p.CrewMembers.Sum(m => m.EmployeeQuantity),
-                    LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,
@@ -212,7 +210,7 @@ namespace capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,SubmittedDate,ExpirationDate,IsCompleted,CompletionDate")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,UserId,ClientId,ProjectNumber,WorkDay,SalesTax,SubmittedDate,ExpirationDate,IsCompleted,CompletionDate")] Project project)
         {
             var ProjectId = project.ProjectId;
             if (id != project.ProjectId)
@@ -227,6 +225,8 @@ namespace capstone.Controllers
                     var editProject = await _context.Project.FindAsync(id);
                     editProject.ProjectNumber = project.ProjectNumber;
                     editProject.ClientId = project.ClientId;
+                    editProject.WorkDay = project.WorkDay;
+                    editProject.SalesTax = project.SalesTax;
                     editProject.SubmittedDate = project.SubmittedDate;
                     editProject.ExpirationDate = project.ExpirationDate;
                     editProject.IsCompleted = project.IsCompleted;
@@ -315,7 +315,6 @@ namespace capstone.Controllers
                     ExpirationDate = p.ExpirationDate,
                     WorkDay = p.WorkDay,
                     SalesTax = p.SalesTax,
-                    LaborMargin = p.LaborMargin,
                     CompletionDate = p.CompletionDate,
                     IsCompleted = p.IsCompleted,
                     TimeTrackerId = p.TimeTrackerId,

@@ -25,6 +25,21 @@
                 <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="WorkDay" class="control-label">Expected hours in a work day.</label>
+                <input asp-for="WorkDay" class="form-control" />
+                <span asp-validation-for="WorkDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LaborMargin" class="control-label">Labor Margin</label>
+                <input asp-for="LaborMargin" class="form-control" />
+                <span asp-validation-for="LaborMargin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesTax" class="control-label"></label>
+                <input asp-for="SalesTax" class="form-control" />
+                <span asp-validation-for="SalesTax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="SubmittedDate" class="control-label"></label>
                 <input asp-for="SubmittedDate" type="date" class="form-control" />
                 <span asp-validation-for="SubmittedDate" class="text-danger"></span>

@@ -61,7 +61,44 @@ namespace capstone.Models
         public double? CrewSize { get; set; }
 
         [Display(Name = "Labor Margin")]
-        public double? LaborMargin { get; set; }
+        public double? LaborMargin
+        {
+            get
+            {
+                if (TotalLaborCost >= 50000)
+                {
+                    return .10;
+                }
+                else if (TotalLaborCost >= 20000)
+                {
+                    return .10;
+                }
+                else if (TotalLaborCost >= 5000)
+                {
+                    return .15;
+                }
+                else if (TotalLaborCost >= 1000)
+                {
+                    return .20;
+                }
+                else if (TotalLaborCost >= 500)
+                {
+                    return .20;
+                }
+                else if (TotalLaborCost >= 100)
+                {
+                    return .25;
+                }
+                else if (TotalLaborCost >= 0)
+                {
+                    return .25;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
 
         [DataType(DataType.Date)]
         [Display(Name = "Completion Date")]

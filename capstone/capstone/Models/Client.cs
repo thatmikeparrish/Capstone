@@ -24,11 +24,12 @@ namespace capstone.Models
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Name")]
+        [Display(Name = " First Name")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [NotMapped]
@@ -49,24 +50,19 @@ namespace capstone.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Required]
         [StringLength(255)]
         [Display(Name = "Address")]
         public string StreetAddress { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string City { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string State { get; set; }
 
-        [Required]
         [StringLength(5)]
         public string ZipCode { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string Comments { get; set; }
     }

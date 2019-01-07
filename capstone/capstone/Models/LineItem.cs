@@ -61,7 +61,7 @@ namespace capstone.Models
                 }
                 else 
                 {
-                    return -1;
+                    return 0;
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace capstone.Models
                 }
                 else
                 {
-                    return -1;
+                    return 0;
                 }
             }
         }
