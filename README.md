@@ -42,4 +42,4 @@ A step by step series of examples that tell you how to get a development env run
 ## Notes
 
 * Here is the ERD for my project.
-![Cost Estimator ERD](https://github.com/thatmikeparrish/Capstone/blob/master/updatedERD.png)
+![Cost Estimator ERD](https://github.com/thatmikeparrish/Capstone/blob/master/2019-01-07_ERD.png)
