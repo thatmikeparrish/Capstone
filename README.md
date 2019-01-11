@@ -2,7 +2,7 @@
 
 Welcome to Cost Estimator! This app was based on a excel spreadsheet I built at a previous job, I wanted to take this and mold it into a MVC app that I can use for future projects. This is my backend capstone for Nashville Software School (NSS). 
 
-![Old Excel View](https://github.com/thatmikeparrish/Capstone/blob/master/estimator.png)
+![Old Excel View](https://github.com/thatmikeparrish/Capstone/blob/master/estimator.PNG)
 
 ## Getting Started
 
