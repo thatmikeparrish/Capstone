@@ -1,0 +1,48 @@
+﻿@model capstone.Models.Crew
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Crew</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeType.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayRate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.EmployeeQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.EmployeeType.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PayRate)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CrewId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        &nbsp&nbsp&nbsp
+        <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-default">Cancel</a>
+    </form>
+</div>

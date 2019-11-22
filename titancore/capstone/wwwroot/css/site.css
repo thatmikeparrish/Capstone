@@ -1,0 +1,181 @@
+﻿/* 
+Dark Blue
+    #1F464D
+    31 70 77
+
+Light Blue
+    #3C8C93
+    60 140 147
+
+Tan
+    #D9D7CA
+    217 215 202
+
+Light Brown
+    #73604F
+    115 96 79
+
+Dark Brown
+    #3B3535
+    59 53 53
+
+Fonts
+    font-family: 'Yellowtail', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+*/
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 1px;
+    background-image: url(../images/background.jpg);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    height: 100%;
+    box-shadow: 0px 0px 5px 1000px rgba(60, 140, 147, .65) inset;
+}
+
+p {
+    margin-bottom: -1px;
+}
+
+a {
+    color: #D9D7CA;
+}
+
+/* Login */
+.loginCenter {
+    margin: 0 45rem;
+}
+
+.loginLogo {
+    width: 25rem;
+    margin: 0 2rem;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: rgba(0, 0, 0, .7);
+    min-height: 95.4vh;
+    height: 100%;
+    color: #D9D7CA;
+}
+
+/* Home Page*/
+.home {
+    margin: 6rem auto;
+}
+
+.homeLogo {
+    width: 25rem;
+}
+
+.contactInfo {
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+/* Carousel */
+.myCarousel {
+    margin: 5rem 0;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.img-responsive {
+    max-height: 36rem;
+}
+
+.navbar-brand {
+    font-family: 'Yellowtail', cursive;
+}
+
+.btn {
+    min-width: 6.5rem;
+    margin-bottom: 1rem;
+}
+
+.lineitems {
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.quote {
+    width: 80%;
+    background-color: white;
+    color: black;
+    padding: 10rem;
+    margin: 5rem auto 5rem auto;
+    border-radius: 5%;
+}
+
+.topRow {
+    margin-bottom: 5rem;
+}
+
+.submitDate {
+    padding: 10rem 0 10rem 0;
+}
+
+.quoteLogo {
+    height: 25rem;
+}
+
+.quoteInfo {
+    min-height: 9.6rem;
+    margin-bottom: 5rem;
+}
+
+.borderTop {
+    border-top: 3px solid black;
+}
+
+.borderRight {
+    border-right: 3px solid black;
+}
+
+.borderBottom {
+    border-bottom: 3px solid black;
+}
+
+.borderLeft {
+    border-left: 3px solid black;
+}
+
+.descMargin {
+    padding: 1rem;
+}
+
+.totals {
+    margin-top: 5rem;
+}

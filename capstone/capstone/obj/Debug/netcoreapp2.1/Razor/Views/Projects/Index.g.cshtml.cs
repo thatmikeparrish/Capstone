@@ -69,7 +69,7 @@ using capstone.Models;
             WriteLiteral("\r\n<h2>Projects</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(120, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1db0d4ac3d04621b84f093887fb31f6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a691e6f149e4984b749adb33c309c4c", async() => {
                 BeginContext(167, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -140,7 +140,7 @@ using capstone.Models;
             WriteLiteral("        <tr>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(773, 170, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c7c8eb65af04cc1a573eca5fafe5eb7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a8f6c5c016d44eba2d9f9eea9a258a1", async() => {
                 BeginContext(891, 48, false);
 #line 33 "C:\Users\Mike Parrish\workspace\BusinessProjects\capstone\capstone\capstone\Views\Projects\Index.cshtml"
                                                                                                                                 Write(Html.DisplayFor(modelItem => item.ProjectNumber));
@@ -184,7 +184,7 @@ using capstone.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(998, 223, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d9288d6ef0a408baa2492954051466d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a001d0742e3b4f279752cc4346ff8997", async() => {
                 BeginContext(1114, 51, false);
 #line 36 "C:\Users\Mike Parrish\workspace\BusinessProjects\capstone\capstone\capstone\Views\Projects\Index.cshtml"
                                                                                                                               Write(Html.DisplayFor(modelItem => item.Client.FirstName));

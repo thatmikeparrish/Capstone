@@ -1,0 +1,102 @@
+﻿@model capstone.Models.LineItem
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LineItem</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubMargin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ManHours)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LaborCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LaborQuote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuoteSalesTax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        @String.Format("{0:c}", Model.Description)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.MaterialCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", Model.MaterialMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.MaterialQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.SubCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:P0}", Model.SubMargin)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.SubQuote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.ManHours)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.LaborCost)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.LaborQuote)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.QuoteSalesTax)
+                    </td>
+                    <td>
+                        @String.Format("{0:c}", Model.Total)
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="LineItemId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        &nbsp&nbsp&nbsp
+        <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-default">Cancel</a>
+    </form>
+</div>

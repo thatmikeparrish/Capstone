@@ -1,0 +1,47 @@
+﻿@model IEnumerable<capstone.Models.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Projects</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletionDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-area="" asp-controller="Projects" asp-action="Details" asp-route-id="@item.ProjectId" class="btn btn-primary">@Html.DisplayFor(modelItem => item.ProjectNumber)</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Clients" asp-action="Details" asp-route-id="@item.ClientId" class="btn btn-primary">@Html.DisplayFor(modelItem => item.Client.FirstName) @Html.DisplayFor(modelItem => item.Client.LastName)</a>
+            </td>
+            <td>
+                @String.Format("{0:c}", item.IsCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletionDate)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

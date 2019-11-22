@@ -1,0 +1,85 @@
+﻿@model capstone.Models.Project
+
+@{
+    ViewData["Title"] = "Quote";
+}
+
+<div class="quote">
+    <div class="row topRow">
+        <div class="col-md-8">
+            <img src="~/images/logoMikeParrishMix.png" alt="thatmikeparrish" class="quoteLogo" />
+            <p>Phone: 615-788-6484</p>
+            <p>E-mail: thatmikeparrish@gmail.com</p>
+        </div>
+        <div class="submitDate col-md-4 text-center">
+            <h1>Quote</h1>
+            <p>Submitted on: @Html.DisplayFor(model => model.SubmittedDate)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 quoteInfo borderTop borderRight borderBottom borderLeft">
+            <p>
+                <strong>Quote for:</strong>
+            </p>
+            <p>@Model.Client.FullName</p>
+            <p>@Model.Client.CompanyName</p>
+        </div>
+        <div class="col-md-4 quoteInfo borderTop borderRight borderBottom">
+            <p>
+                <strong>Quote #:</strong>
+            </p>
+            <p>@Model.ProjectNumber</p>
+        </div>
+        <div class="col-md-4 quoteInfo borderTop borderRight borderBottom">
+            <p>
+                <strong>Quote expires:</strong>
+            </p>
+            <p>@Html.DisplayFor(model => model.ExpirationDate)</p>
+        </div>
+    </div>
+    <div class="row borderBottom">
+        <div class="col-md-10">
+            <p class="text-center">
+                <strong>Description</strong>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <p class="text-center">
+                <strong>Cost</strong>
+            </p>
+        </div>
+    </div>
+    @foreach (LineItem li in Model.LineItems)
+    {
+    <div class="row borderRight borderBottom borderLeft">
+        <div class="col-md-10">
+             <p class="descMargin">@String.Format("{0:c}", li.Description)</p>
+        </div>
+        <div class="col-md-2">
+             <p class="descMargin text-right">@String.Format("{0:c}", li.Total)</p>
+        </div>
+    </div>
+    }
+    <div class="row totals">
+        <div class="col-md-10 text-right">
+            <p>
+                <strong>Subtotal:</strong>
+            </p>
+            <p>
+                <strong>Sales Tax:</strong>
+            </p>
+            <h3>
+                <strong>Total:</strong>
+            </h3>
+        </div>
+        <div class="col-md-2 text-center">
+            <p>@String.Format("{0:c}", Model.GrandTotal)</p>
+            <p>@String.Format("{0:c}", Model.TotalSalesTax)</p>
+            <h3>
+                <strong>@String.Format("{0:c}", Model.QuoteTotal)</strong>
+            </h3>
+        </div>
+    </div>
+</div>
+
+<a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-default">Back</a>

@@ -1,0 +1,53 @@
+﻿@model capstone.Models.LineItem
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Line Item</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialCost" class="control-label"></label>
+                <input asp-for="MaterialCost" class="form-control" />
+                <span asp-validation-for="MaterialCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubCost" class="control-label"></label>
+                <input asp-for="SubCost" class="form-control" />
+                <span asp-validation-for="SubCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManHours" class="control-label"></label>
+                <input asp-for="ManHours" class="form-control" />
+                <span asp-validation-for="ManHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                &nbsp&nbsp&nbsp
+                <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

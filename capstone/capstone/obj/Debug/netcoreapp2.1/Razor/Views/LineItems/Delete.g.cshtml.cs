@@ -310,12 +310,12 @@ using capstone.Models;
             WriteLiteral("\r\n                    </td>\r\n                </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    ");
             EndContext();
             BeginContext(3197, 315, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b9b22477b36f4f4eb32440256d5a83c5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4fe7c02052fe403f93b9ffb9d513b1a7", async() => {
                 BeginContext(3223, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();
                 BeginContext(3233, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "37ec9efabbf3401ba792ff841b716692", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "52ae3ab55453476fb5f0b3ba51b3da0f", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -340,7 +340,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n        <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" />\r\n        &nbsp&nbsp&nbsp\r\n        ");
                 EndContext();
                 BeginContext(3383, 116, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f5d9323ac4534a2b844c9edefe536663", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "211f8ff85f884fef8d3fc50dbaa2eb7d", async() => {
                     BeginContext(3489, 6, true);
                     WriteLiteral("Cancel");
                     EndContext();

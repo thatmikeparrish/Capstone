@@ -1,0 +1,102 @@
+﻿@model IEnumerable<capstone.Models.LineItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialMargin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMargin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LaborCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LaborQuote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuoteSalesTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.MaterialCost)
+            </td>
+            <td>
+                @String.Format("{0:P0}", item.MaterialMargin)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.MaterialQuote)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.SubCost)
+            </td>
+            <td>
+                @String.Format("{0:P0}", item.SubMargin)
+
+            </td>
+            <td>
+                @String.Format("{0:c}", item.SubQuote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManHours)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.LaborCost)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.LaborQuote)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.QuoteSalesTax)
+            </td>
+            <td>
+                @String.Format("{0:c}", item.Total)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LineItemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LineItemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LineItemId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

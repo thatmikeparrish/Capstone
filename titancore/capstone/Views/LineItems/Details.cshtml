@@ -1,0 +1,91 @@
+﻿@model capstone.Models.LineItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LineItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialMargin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialMargin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubMargin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubMargin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SubQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManHours)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManHours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaborCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LaborCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaborQuote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LaborQuote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteSalesTax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuoteSalesTax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LineItemId">Edit</a> |
+    &nbsp&nbsp&nbsp
+    <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ProjectId" class="btn btn-default">Back</a>
+</div>
